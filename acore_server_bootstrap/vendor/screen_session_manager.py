@@ -8,8 +8,8 @@
 
 - :func:`run_script`: 用 Screen 长期运行某个脚本, 并给这个 Session 一个名字.
 - :func:`list_session`: 列出正在运行着的 screen session 列表.
-- :func:`stop_script`: 根据 Session 名字, 停止在后台运行的 Screen session 长期运行某个脚本.
 - :func:`enter_session`: 恢复并交互式 Session.
+- :func:`stop_script`: 根据 Session 名字, 停止在后台运行的 Screen session 长期运行某个脚本.
 
 面向开发者的底层函数:
 
@@ -134,26 +134,6 @@ def list_session():
     subprocess.run(["screen", "-ls"])
 
 
-def stop_script(
-    name: str,
-    verbose: bool = True,
-    print_func: T.Callable = print,
-):
-    """
-    根据 Session 名字, 停止在后台运行的 Screen session 长期运行某个脚本. 该函数会根据名字
-    找到对应 session 的 id, 然后根据 id 关闭 session. 这里注意你要避免你的 session 名字
-    刚好是其他 session 的字符串前缀, 否则会误杀其他 session.
-    """
-    if verbose:
-        print_func(f"stop session {name!r}")
-    sessions = filter_session(name=name)
-    for session in sessions:
-        print(f"  stop session id: {session!r}")
-        stop_script_in_screen(session)
-    if len(sessions) == 0:
-        print(f"  didn't found any matched sessions")
-
-
 def enter_session(
     name: str,
     prompt: bool = True,
@@ -181,6 +161,26 @@ def enter_session(
             return
     cmd = f"screen -r {name}"
     subprocess.run(cmd, shell=True)
+
+
+def stop_script(
+    name: str,
+    verbose: bool = True,
+    print_func: T.Callable = print,
+):
+    """
+    根据 Session 名字, 停止在后台运行的 Screen session 长期运行某个脚本. 该函数会根据名字
+    找到对应 session 的 id, 然后根据 id 关闭 session. 这里注意你要避免你的 session 名字
+    刚好是其他 session 的字符串前缀, 否则会误杀其他 session.
+    """
+    if verbose:
+        print_func(f"stop session {name!r}")
+    sessions = filter_session(name=name)
+    for session in sessions:
+        print(f"  stop session id: {session!r}")
+        stop_script_in_screen(session)
+    if len(sessions) == 0:
+        print(f"  didn't found any matched sessions")
 
 
 if __name__ == "__main__":
