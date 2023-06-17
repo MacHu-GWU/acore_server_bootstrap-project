@@ -68,6 +68,10 @@ Welcome to ``acore_server_bootstrap`` Documentation
 
 这一连串步骤在每次开新服, 或是修改了配置文件的时候都需要进行, 非常的麻烦. 为了解决这个问题, 我们开发了 ``acore_server_bootstrap`` 这个工具, 它可以帮助我们自动完成上述的所有步骤.
 
+**Note**
+
+    注意, 该工具建立在特定的服务器的文件目录结构之上. 如果服务器的目录结构不符合预期, 则无法使用该工具.
+
 .. code-block:: bash
 
     python3 -c "$(curl -fsSL https://raw.githubusercontent.com/MacHu-GWU/acore_server_bootstrap-project/main/install.py)"
