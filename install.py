@@ -51,6 +51,7 @@ dir_venv = dir_acore_server_bootstrap_project / ".venv"
 dir_venv_bin = dir_venv / "bin"
 path_venv_bin_python = dir_venv_bin / "python"
 path_venv_bin_pip = dir_venv_bin / "pip"
+path_acorebs_cli = dir_venv_bin / "acorebs"
 # subprocess.run()
 
 
@@ -82,11 +83,17 @@ def install_dependencies():
         subprocess.run(args, check=True)
 
 
+def show_info():
+    args = [f"{path_acorebs_cli}", "info"]
+    subprocess.run(args, check=True)
+
+
 def run():
     clean_up()
     clone_acore_server_bootstrap_git_repo()
     create_virtualenv()
     install_dependencies()
+    show_info()
 
 
 if __name__ == "__main__":
