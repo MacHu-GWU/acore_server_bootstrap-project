@@ -81,3 +81,13 @@ def install_dependencies():
         args = [f"{path_venv_bin_pip}", "install", "-e", "."]
         subprocess.run(args, check=True)
 
+
+def run():
+    clean_up()
+    clone_acore_server_bootstrap_git_repo()
+    create_virtualenv()
+    install_dependencies()
+
+
+if __name__ == "__main__":
+    run()
