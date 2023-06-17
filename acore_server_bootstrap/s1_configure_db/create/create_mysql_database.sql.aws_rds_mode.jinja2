@@ -1,0 +1,61 @@
+/*
+这段代码是对 AzerothCore 官方 SQL
+https://github.com/azerothcore/azerothcore-wotlk/blob/master/data/sql/create/create_mysql.sql
+的修改, 以适用 AWS RDS 的使用场景. 我们并没有改变原 SQL 的逻辑, 仅仅是将一些 hardcode 的值参数化了,
+让使用起来更加灵活.
+
+该段代码只适用于于配置一台刚创建的 EC2, 还从未连接到数据库的情况. 如果你要配置一台曾经已经连接过数据库
+的 EC2, 进行例如更新密码等操作, 而无需重新创建数据库, 则你需要用 create_mysql_user.sql.aws_rds_mode.jinja2
+这个 SQL.
+
+该段 SQL 的逻辑为:
+
+- 删除可能已经存在的和我们要创建的 User 一摸一样的 User
+- 创建 User
+- 允许这个 User 能进行各种数据库操作
+- 创建 acore 中需要的三个数据库
+- 允许这个 User 对这三个数据库进行各种操作
+
+可以看出, 该段 SQL 只适用于面对一个空数据库的场景.
+*/
+
+/*
+注意这里不是 @'localhost' 了, 而我们是用的 @'%.%.%.%'. 这个设计本身是用来防止密码泄露之后
+从别的机器上访问数据库. 而因为我们使用的是 EC2 + RDS, 两者必须都有同一个特定的 security group
+才能由 EC2 访问 RDS. 不同环境下的 (blue / green) 的 EC2 和 RDS 是无法互相访问的. 由于
+security group 的防火墙机制发生在先, 而 DB User 的验证机制发生在后, 所以这里就没有必要设置
+复杂的安全策略了. 并且由于 EC2 的 IP 地址会变动, 而且 VPC 的 CIDR block 也可能会改变,
+所以为了方便起见就直接设为允许任意 IP 地址访问了.
+*/
+
+/*
+先删除可能已经存在的同名 User, 这样是为了防止在重复执行这段 SQL 时出错, 以达到幂等性的目的
+*/
+DROP USER IF EXISTS '{{ database_username }}'@'%.%.%.%';
+
+/*
+注意这里 'your_password' 是 acore 用户的密码. 不用默认密码而用你自己的密码有助于增加数据库安全性.
+但你要知道如果黑客能成功的黑进你的 EC2, 就意味着能看到 authserver.conf 文件, 里面可是明文记录了
+你的密码的. 所以你还需要保证 EC2 的安全. 当然在 Key Pair + Security Group 的双重保护下一般是
+没问题的, 除非你自己泄露了 Key Pair, 又不小心让黑客黑进了你的白名单网络.
+*/
+CREATE USER '{{ database_username }}'@'%.%.%.%' IDENTIFIED BY '{{ database_password }}' WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0;
+
+/*
+RDS 不允许用 ALL PRIVILEGES, 下面是我们需要给 user 的权限
+*/
+GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, RELOAD, PROCESS, REFERENCES, INDEX, ALTER, SHOW DATABASES, CREATE TEMPORARY TABLES, LOCK TABLES, EXECUTE, REPLICATION SLAVE, REPLICATION CLIENT, CREATE VIEW, SHOW VIEW, CREATE ROUTINE, ALTER ROUTINE, CREATE USER, EVENT, TRIGGER ON * . * TO '{{ database_username }}'@'%.%.%.%' WITH GRANT OPTION;
+
+/*
+然后创建三个空数据库. 游戏服务器核心会自动往里面填充数据的.
+*/
+CREATE DATABASE `acore_world` DEFAULT CHARACTER SET UTF8MB4 COLLATE utf8mb4_general_ci;
+CREATE DATABASE `acore_characters` DEFAULT CHARACTER SET UTF8MB4 COLLATE utf8mb4_general_ci;
+CREATE DATABASE `acore_auth` DEFAULT CHARACTER SET UTF8MB4 COLLATE utf8mb4_general_ci;
+
+/*
+RDS 不允许用 ALL PRIVILEGES, 而且这一步是将对特定数据库的权限给 user, 所以这些权限要比前面的全局权限小.
+*/
+GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, INDEX, ALTER, CREATE TEMPORARY TABLES, LOCK TABLES, EXECUTE, CREATE VIEW, SHOW VIEW, CREATE ROUTINE, ALTER ROUTINE, EVENT, TRIGGER ON `acore_world` . * TO '{{ database_username }}'@'%.%.%.%' WITH GRANT OPTION;
+GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, INDEX, ALTER, CREATE TEMPORARY TABLES, LOCK TABLES, EXECUTE, CREATE VIEW, SHOW VIEW, CREATE ROUTINE, ALTER ROUTINE, EVENT, TRIGGER ON `acore_characters` . * TO '{{ database_username }}'@'%.%.%.%' WITH GRANT OPTION;
+GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, INDEX, ALTER, CREATE TEMPORARY TABLES, LOCK TABLES, EXECUTE, CREATE VIEW, SHOW VIEW, CREATE ROUTINE, ALTER ROUTINE, EVENT, TRIGGER ON `acore_auth` . * TO '{{ database_username }}'@'%.%.%.%' WITH GRANT OPTION;

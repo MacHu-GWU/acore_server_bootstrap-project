@@ -1,0 +1,5 @@
+/*
+这段代码更新 realmlist 的 address 字段. 这是因为每次重启开发测试服务器后, 得到的 Public IP
+地址都是不同的 (我们只给生产服务器配备宝贵的 IP). 所以重启之后需要运行这个脚本来更新配置.
+*/
+UPDATE realmlist SET address = '{{ server_public_ip }}' WHERE id = 1;

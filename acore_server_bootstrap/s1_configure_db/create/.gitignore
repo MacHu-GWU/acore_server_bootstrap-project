@@ -1,0 +1,4 @@
+# ignore generated sql files
+create_mysql_database.sql
+create_mysql_user.sql
+update_realmlist_address.sql
