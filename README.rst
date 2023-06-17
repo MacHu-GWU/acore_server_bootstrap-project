@@ -71,7 +71,7 @@ Welcome to ``acore_server_bootstrap`` Documentation
 .. code-block:: bash
 
     python3 -c "$(curl -fsSL https://raw.githubusercontent.com/MacHu-GWU/acore_server_bootstrap-project/main/install.py)"
-
+    python3.8 -c "$(curl -fsSL https://raw.githubusercontent.com/MacHu-GWU/acore_server_bootstrap-project/main/install.py)"
 
 .. _install:
 

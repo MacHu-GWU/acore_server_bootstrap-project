@@ -85,6 +85,7 @@ def install_dependencies():
 
 def show_info():
     args = [f"{path_acorebs_cli}", "info"]
+    print(" ".join(args))
     subprocess.run(args, check=True)
 
 
