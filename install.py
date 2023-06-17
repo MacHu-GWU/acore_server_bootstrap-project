@@ -59,10 +59,12 @@ dir_git_repos.mkdir(parents=True, exist_ok=True)
 
 
 def clean_up():
+    print(f"--- Cleaning up '{dir_acore_server_bootstrap_project}' folder...")
     shutil.rmtree(dir_acore_server_bootstrap_project, ignore_errors=True)
 
 
 def clone_acore_server_bootstrap_git_repo():
+    print("--- Cloning acore_server_bootstrap git repo...")
     with temp_cwd(dir_git_repos):
         args = [
             "git",
@@ -73,17 +75,20 @@ def clone_acore_server_bootstrap_git_repo():
 
 
 def create_virtualenv():
+    print("--- Creating virtualenv...")
     args = ["virtualenv", "-p", f"python{PY_VER_MAJOR}.{PY_VER_MINOR}", f"{dir_venv}"]
     subprocess.run(args, check=True)
 
 
 def install_dependencies():
+    print("--- Installing dependencies...")
     with temp_cwd(dir_acore_server_bootstrap_project):
         args = [f"{path_venv_bin_pip}", "install", "-e", "."]
         subprocess.run(args, check=True)
 
 
 def show_info():
+    print("--- Showing info...")
     args = [f"{path_acorebs_cli}", "info"]
     print(" ".join(args))
     subprocess.run(args, check=True)
