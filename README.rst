@@ -61,7 +61,7 @@ Welcome to ``acore_server_bootstrap`` Documentation
 1. 创建数据库的 user.
 2. 创建三个数据库 (auth, characters, world), 如果还没创建过的话.
 3. 将必要的配置写入数据中 (realmlist).
-4. 将最新的配置写入 ``*.conf``{}{ 文件中.
+4. 将最新的配置写入 ``*.conf`` 文件中.
 5. 禁止 ubuntu 的自动升级.
 6. 对游戏服务器的启动脚本赋予可执行权限.
 7. 启动游戏服务器.
