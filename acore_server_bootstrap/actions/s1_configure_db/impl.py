@@ -4,6 +4,7 @@ import typing as T
 import subprocess
 from jinja2 import Template
 
+from ...logger import logger
 from ...server import Server
 
 from .paths import (
@@ -174,7 +175,10 @@ def run_update_realmlist_address_sql(
 # ------------------------------------------------------------------------------
 # high level api
 # ------------------------------------------------------------------------------
+@logger.start_and_end(msg="{func_name}")
 def create_database(server: Server):
+    logger.info("Create database user for game server ...")
+    logger.info("Create three database acore_auth, acore_characters, acore_world ...")
     run_create_mysql_database_sql_in_rds_mode(
         database_username=server.config.db_username,
         database_password=server.config.db_password,
@@ -184,7 +188,9 @@ def create_database(server: Server):
     )
 
 
+@logger.start_and_end(msg="{func_name}")
 def create_user(server: Server):
+    logger.info("Create database user for game server ...")
     run_create_mysql_user_sql_in_rds_mode(
         database_username=server.config.db_username,
         database_password=server.config.db_password,
@@ -194,7 +200,9 @@ def create_user(server: Server):
     )
 
 
+@logger.start_and_end(msg="{func_name}")
 def update_realmlist(server: Server):
+    logger.info("Update acore_auth.realmlist.address ...")
     run_update_realmlist_address_sql(
         server_public_ip=server.metadata.ec2_inst.public_ip,
         database_host=server.metadata.rds_inst.endpoint,
@@ -203,6 +211,8 @@ def update_realmlist(server: Server):
     )
 
 
+@logger.start_and_end(msg="{func_name}")
 def configure_db(server: Server):
-    create_database(server)
-    update_realmlist(server)
+    with logger.nested():
+        create_database(server)
+        update_realmlist(server)
