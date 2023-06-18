@@ -7,6 +7,7 @@ def test():
     _ = api
 
     _ = api.Server
+    _ = api.disable_ubuntu_auto_upgrade
     _ = api.create_database
     _ = api.create_user
     _ = api.update_realmlist
