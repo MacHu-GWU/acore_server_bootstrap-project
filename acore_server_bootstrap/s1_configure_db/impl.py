@@ -177,17 +177,18 @@ def configure_db():
 
     server = Server.from_ec2_inside()
 
-    run_create_mysql_database_sql_in_rds_mode(
-        database_username=server.config.db_username,
-        database_password=server.config.db_password,
-        database_host=server.metadata.rds_inst.endpoint,
-        database_admin_username="admin",
-        database_admin_password=server.config.db_admin_password,
-    )
+    with logger.nested():
+        run_create_mysql_database_sql_in_rds_mode(
+            database_username=server.config.db_username,
+            database_password=server.config.db_password,
+            database_host=server.metadata.rds_inst.endpoint,
+            database_admin_username="admin",
+            database_admin_password=server.config.db_admin_password,
+        )
 
-    run_update_realmlist_address_sql(
-        server_public_ip=server.metadata.ec2_inst.public_ip,
-        database_host=server.metadata.rds_inst.endpoint,
-        database_admin_username="admin",
-        database_admin_password=server.config.db_admin_password,
-    )
+        run_update_realmlist_address_sql(
+            server_public_ip=server.metadata.ec2_inst.public_ip,
+            database_host=server.metadata.rds_inst.endpoint,
+            database_admin_username="admin",
+            database_admin_password=server.config.db_admin_password,
+        )
