@@ -93,12 +93,19 @@ def show_info():
     subprocess.run(args, check=True)
 
 
+def run_bootstrap():
+    print("--- Run bootstrap...")
+    args = [f"{path_acorebs_cli}", "s01_configure_db"]
+    subprocess.run(args, check=True)
+
+
 def run():
     clean_up()
     clone_acore_server_bootstrap_git_repo()
     create_virtualenv()
     install_dependencies()
     show_info()
+    run_bootstrap()
 
 
 if __name__ == "__main__":
