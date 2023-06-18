@@ -101,6 +101,9 @@ def run_bootstrap():
     args = [f"{path_acorebs_cli}", "s02_apply_server_config"]
     subprocess.run(args, check=True)
 
+    args = [f"{path_acorebs_cli}", "s03_run_server"]
+    subprocess.run(args, check=True)
+
 
 def run():
     clean_up()
