@@ -4,6 +4,8 @@ import typing as T
 import subprocess
 from jinja2 import Template
 
+from ..logger import logger
+
 from .paths import (
     path_create_mysql_database_aws_rds_sql_template,
     path_create_mysql_user_aws_rds_sql_template,
@@ -68,6 +70,7 @@ def render_create_mysql_user_sql_in_rds_mode(
     )
 
 
+@logger.start_and_end(msg="{func_name}")
 def run_create_mysql_database_sql_in_rds_mode(
     database_username: str,
     database_password: str,
@@ -98,6 +101,7 @@ def run_create_mysql_database_sql_in_rds_mode(
     )
 
 
+@logger.start_and_end(msg="{func_name}")
 def run_create_mysql_user_sql_in_rds_mode(
     database_username: str,
     database_password: str,
@@ -138,6 +142,7 @@ def render_update_realmlist_address_sql(server_public_ip: str) -> str:
     )
 
 
+@logger.start_and_end(msg="{func_name}")
 def run_update_realmlist_address_sql(
     server_public_ip: str,
     database_host: str,
@@ -163,4 +168,33 @@ def run_update_realmlist_address_sql(
         database="acore_auth",
         username=database_admin_username,
         password=database_admin_password,
+    )
+
+
+@logger.start_and_end(msg="{func_name}")
+def configure_db():
+    from acore_server_metadata.api import Server
+    from acore_server_config.api import bsm
+    from acore_server_config.api import get_server as get_server_config
+
+    server_config = get_server_config()
+    server = Server.get_server(
+        id=server_config.id,
+        ec2_client=bsm.ec2_client,
+        rds_client=bsm.rds_client,
+    )
+
+    run_create_mysql_database_sql_in_rds_mode(
+        database_username=server_config.db_username,
+        database_password=server_config.db_password,
+        database_host=server.rds_inst.endpoint,
+        database_admin_username="admin",
+        database_admin_password=server_config.db_admin_password,
+    )
+
+    run_update_realmlist_address_sql(
+        server_public_ip=server.ec2_inst.public_ip,
+        database_host=server.rds_inst.endpoint,
+        database_admin_username="admin",
+        database_admin_password=server_config.db_admin_password,
     )
