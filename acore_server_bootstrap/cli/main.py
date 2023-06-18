@@ -1,62 +1,107 @@
 # -*- coding: utf-8 -*-
 
 import fire
-from ..s1_configure_db.api import (
-    run_create_mysql_database_sql_in_rds_mode,
-    run_create_mysql_user_sql_in_rds_mode,
-    run_update_realmlist_address_sql,
-    configure_db,
-)
-from ..s2_apply_server_config.api import apply_server_config
-from ..s3_run_server.api import (
-    run_server,
-    list_session,
-    enter_worldserver,
-    stop_server,
-)
+
+from .. import api
+from ..logger import logger
 
 
 class Command:
     def info(self):
+        """
+        Print welcome message.
+        """
         print("Hello acore server bootstrap user!")
 
+    @logger.pretty_log()
     def bootstrap(self):
         """
         Bootstrap a new EC2 server.
         """
-        configure_db()
-        apply_server_config()
-        run_server()
+        api.disable_ubuntu_auto_upgrade()
 
-    def db_configure(self):
-        """
-        Configure database.
-        """
-        configure_db()
+        server = api.Server.from_ec2_inside()
+        api.configure_db(server)
+        api.apply_server_config(server)
+        api.run_server(server)
 
-    def s02_apply_server_config(self):
+    def disable_ubuntu_auto_upgrade(self):
         """
-        Step 2. Apply server config.
+        Disable Ubuntu auto upgrade (don't upgrade mysql).
         """
-        apply_server_config()
+        api.disable_ubuntu_auto_upgrade()
 
-    def s03_run_server(self):
+    def create_database(self):
         """
-        Step 3. Run server.
+        Create the database user for game server and three initial databases.
         """
-        run_server()
+        api.create_database()
+
+    def create_user(self):
+        """
+        Create the database user for game server.
+        """
+        api.create_user()
+
+    def update_realmlist(self):
+        """
+        Update 'acore_auth.realmlist.address'.
+        """
+        api.update_realmlist()
+
+    def configure_db(self):
+        """
+        Configure the database for game server.
+        """
+        api.configure_db()
+
+    def apply_authserver_conf(self):
+        """
+        Update the authserver.conf.
+        """
+        api.apply_authserver_conf()
+
+    def apply_worldserver_conf(self):
+        """
+        Update the worldserver.conf.
+        """
+        api.apply_worldserver_conf()
+
+    def apply_mod_lua_engine_conf(self):
+        """
+        Update the mod_LuaEngine.conf.
+        """
+        api.apply_mod_lua_engine_conf()
+
+    def apply_server_config(self):
+        """
+        Update the authserver.conf, worldserver.conf and mod_LuaEngine.conf.
+        """
+        api.apply_server_config()
 
     def run_server(self):
-        run_server()
+        """
+        Run the game server in screen session.
+        """
+        api.run_server()
 
     def list_session(self):
-        list_session()
+        """
+        List all screen sessions.
+        """
+        api.list_session()
 
     def enter_worldserver(self):
-        enter_worldserver()
+        """
+        Enter the worldserver screen session.
+        """
+        api.enter_worldserver()
 
     def stop_server(self):
-        stop_server()
+        """
+        Stop the game server.
+        """
+        api.stop_server()
 
 
 def run():
