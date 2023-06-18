@@ -10,6 +10,7 @@ class Command:
     """
     acore server bootstrap command line interface.
     """
+
     def info(self):
         """
         Print welcome message.
@@ -21,12 +22,13 @@ class Command:
         """
         Bootstrap a new EC2 server.
         """
-        api.disable_ubuntu_auto_upgrade()
+        with logger.nested():
+            api.disable_ubuntu_auto_upgrade()
 
-        server = api.Server.from_ec2_inside()
-        api.configure_db(server)
-        api.apply_server_config(server)
-        api.run_server(server)
+            server = api.Server.from_ec2_inside()
+            api.configure_db(server)
+            api.apply_server_config(server)
+            api.run_server()
 
     def disable_ubuntu_auto_upgrade(self):
         """
@@ -38,49 +40,57 @@ class Command:
         """
         Create the database user for game server and three initial databases.
         """
-        api.create_database()
+        server = api.Server.from_ec2_inside()
+        api.create_database(server)
 
     def create_user(self):
         """
         Create the database user for game server.
         """
-        api.create_user()
+        server = api.Server.from_ec2_inside()
+        api.create_user(server)
 
     def update_realmlist(self):
         """
         Update 'acore_auth.realmlist.address'.
         """
-        api.update_realmlist()
+        server = api.Server.from_ec2_inside()
+        api.update_realmlist(server)
 
     def configure_db(self):
         """
         Configure the database for game server.
         """
-        api.configure_db()
+        server = api.Server.from_ec2_inside()
+        api.configure_db(server)
 
     def apply_authserver_conf(self):
         """
         Update the authserver.conf.
         """
-        api.apply_authserver_conf()
+        server = api.Server.from_ec2_inside()
+        api.apply_authserver_conf(server)
 
     def apply_worldserver_conf(self):
         """
         Update the worldserver.conf.
         """
-        api.apply_worldserver_conf()
+        server = api.Server.from_ec2_inside()
+        api.apply_worldserver_conf(server)
 
     def apply_mod_lua_engine_conf(self):
         """
         Update the mod_LuaEngine.conf.
         """
-        api.apply_mod_lua_engine_conf()
+        server = api.Server.from_ec2_inside()
+        api.apply_mod_lua_engine_conf(server)
 
     def apply_server_config(self):
         """
         Update the authserver.conf, worldserver.conf and mod_LuaEngine.conf.
         """
-        api.apply_server_config()
+        server = api.Server.from_ec2_inside()
+        api.apply_server_config(server)
 
     def run_server(self):
         """
