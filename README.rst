@@ -72,10 +72,16 @@ Welcome to ``acore_server_bootstrap`` Documentation
 
     注意, 该工具建立在特定的服务器的文件目录结构之上. 如果服务器的目录结构不符合预期, 则无法使用该工具.
 
+在 EC2 上复制以下脚本即可运行该命令
+
 .. code-block:: bash
 
     python3 -c "$(curl -fsSL https://raw.githubusercontent.com/MacHu-GWU/acore_server_bootstrap-project/main/install.py)"
+
+.. code-block:: bash
+
     python3.8 -c "$(curl -fsSL https://raw.githubusercontent.com/MacHu-GWU/acore_server_bootstrap-project/main/install.py)"
+
 
 .. _install:
 
