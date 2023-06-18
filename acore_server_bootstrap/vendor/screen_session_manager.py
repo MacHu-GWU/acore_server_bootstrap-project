@@ -83,13 +83,15 @@ def filter_session(name: T.Union[str, T.List[str]]) -> T.List[str]:
         names = [name]
     else:
         names = name
-    suffixes = [f".{v}\t(Detached)" for v in names]
+    keywords = [f".{v}" for v in names]
     res = subprocess.run(["screen", "-ls"], capture_output=True)
     content = res.stdout.decode("utf-8")
     sessions = list()
     for line in content.splitlines():
-        for suffix in suffixes:
-            if line.endswith(suffix):
+        if "(Detached)" not in line:
+            continue
+        for keyword in keywords:
+            if keyword in line:
                 session_id = [
                     token.strip() for token in line.strip().split("\t") if token.strip()
                 ][0]
