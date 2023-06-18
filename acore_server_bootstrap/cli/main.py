@@ -33,6 +33,9 @@ class Command:
         """
         run_server()
 
+    def run_server(self):
+        run_server()
+
     def list_session(self):
         list_session()
 
