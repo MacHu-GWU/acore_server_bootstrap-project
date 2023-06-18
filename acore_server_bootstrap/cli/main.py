@@ -7,6 +7,9 @@ from ..logger import logger
 
 
 class Command:
+    """
+    acore server bootstrap command line interface.
+    """
     def info(self):
         """
         Print welcome message.

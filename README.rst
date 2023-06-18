@@ -1,5 +1,4 @@
-
-.. .. image:: https://readthedocs.org/projects/acore-server-bootstrap/badge/?version=latest
+.. image:: https://readthedocs.org/projects/acore-server-bootstrap/badge/?version=latest
     :target: https://acore-server-bootstrap.readthedocs.io/en/latest/
     :alt: Documentation Status
 
@@ -26,10 +25,10 @@
 
 ------
 
-.. .. image:: https://img.shields.io/badge/Link-Document-blue.svg
+.. image:: https://img.shields.io/badge/Link-Document-blue.svg
     :target: https://acore-server-bootstrap.readthedocs.io/en/latest/
 
-.. .. image:: https://img.shields.io/badge/Link-API-blue.svg
+.. image:: https://img.shields.io/badge/Link-API-blue.svg
     :target: https://acore-server-bootstrap.readthedocs.io/en/latest/py-modindex.html
 
 .. image:: https://img.shields.io/badge/Link-Install-blue.svg
@@ -50,7 +49,9 @@
 
 Welcome to ``acore_server_bootstrap`` Documentation
 ==============================================================================
-在大规模游戏服务器部署的流程中, 我们通常会将其分为以下几个步骤:
+**项目背景**
+
+在大规模游戏服务器 (Azerothcore) 部署的流程中, 我们通常会将其分为以下几个步骤:
 
 1. 游戏服务器核心的编译.
 2. 将编译好的游戏服务器打包成镜像.
@@ -72,15 +73,119 @@ Welcome to ``acore_server_bootstrap`` Documentation
 
     注意, 该工具建立在特定的服务器的文件目录结构之上. 如果服务器的目录结构不符合预期, 则无法使用该工具.
 
-在 EC2 上复制以下脚本即可运行该命令
+**如何进行 Bootstrap**
+
+在 EC2 上复制以下脚本即可运行该命令. 其原理是通过 ``curl`` 命令下载 `install.py <https://github.com/MacHu-GWU/acore_server_bootstrap-project/blob/main/install.py>`_ 自动化脚本. 这个自动化脚本能 ``git clone ...`` 本项目, 安装依赖, 并用命令行工具运行 ``acorebs bootstrap`` 命令.
 
 .. code-block:: bash
 
     python3 -c "$(curl -fsSL https://raw.githubusercontent.com/MacHu-GWU/acore_server_bootstrap-project/main/install.py)"
 
+如果你需要指定用特定的 Python 版本来运行 (例如用 3.8), 你可以这样做:
+
 .. code-block:: bash
 
     python3.8 -c "$(curl -fsSL https://raw.githubusercontent.com/MacHu-GWU/acore_server_bootstrap-project/main/install.py)"
+
+**acorebs 命令行工具**
+
+用 Python 安装了本项目后就可以使用 ``acorebs`` 命令行工具了. 所有在 bootstrap 期间做的事情都可以单独用命令行再做一次. 下面是所有命令的列表.
+
+``acorebs``
+
+.. code-block:: bash
+
+    /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs
+
+``acorebs info``:
+
+.. code-block:: bash
+
+    /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs info
+
+``acorebs bootstrap``:
+
+.. code-block:: bash
+
+    /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs bootstrap
+
+``acorebs disable_ubuntu_auto_upgrade``:
+
+.. code-block:: bash
+
+    /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs disable_ubuntu_auto_upgrade
+
+``acorebs create_database``:
+
+.. code-block:: bash
+
+    /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs create_database
+
+``acorebs create_user``:
+
+.. code-block:: bash
+
+    /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs create_user
+
+``acorebs update_realmlist``:
+
+.. code-block:: bash
+
+    /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs update_realmlist
+
+``acorebs configure_db``:
+
+.. code-block:: bash
+
+    /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs configure_db
+
+``acorebs apply_authserver_conf``:
+
+.. code-block:: bash
+
+    /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs apply_authserver_conf
+
+``acorebs apply_worldserver_conf``:
+
+.. code-block:: bash
+
+    /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs apply_worldserver_conf
+
+``acorebs apply_mod_lua_engine_conf``:
+
+.. code-block:: bash
+
+    /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs apply_mod_lua_engine_conf
+
+``acorebs apply_server_config``:
+
+.. code-block:: bash
+
+    /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs apply_server_config
+
+``acorebs run_server``:
+
+.. code-block:: bash
+
+    /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs run_server
+
+``acorebs list_session``:
+
+.. code-block:: bash
+
+    /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs list_session
+
+``acorebs enter_worldserver``:
+
+.. code-block:: bash
+
+    /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs enter_worldserver
+
+``acorebs stop_server``:
+
+.. code-block:: bash
+
+    /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs stop_server
 
 
 .. _install:
