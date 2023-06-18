@@ -95,13 +95,7 @@ def show_info():
 
 def run_bootstrap():
     print("--- Run bootstrap...")
-    args = [f"{path_acorebs_cli}", "s01_configure_db"]
-    subprocess.run(args, check=True)
-
-    args = [f"{path_acorebs_cli}", "s02_apply_server_config"]
-    subprocess.run(args, check=True)
-
-    args = [f"{path_acorebs_cli}", "s03_run_server"]
+    args = [f"{path_acorebs_cli}", "bootstrap"]
     subprocess.run(args, check=True)
 
 
