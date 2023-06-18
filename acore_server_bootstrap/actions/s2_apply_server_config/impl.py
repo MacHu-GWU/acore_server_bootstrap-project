@@ -3,16 +3,10 @@
 import acore_paths.api as acore_paths
 from acore_conf.api import apply_changes
 
-from ..logger import logger
+from ...server import Server
 
 
-@logger.start_and_end(msg="{func_name}")
-def apply_server_config():
-    from ..server import Server
-
-    server = Server.from_ec2_inside()
-
-    # authserver.conf
+def apply_authserver_conf(server: Server):
     data = server.config.authserver_conf.copy()
     data.update(
         {
@@ -25,7 +19,8 @@ def apply_server_config():
         data={"authserver": data},
     )
 
-    # worldserver.conf
+
+def apply_worldserver_conf(server: Server):
     data = server.config.worldserver_conf.copy()
     data.update(
         {
@@ -42,7 +37,8 @@ def apply_server_config():
         data={"worldserver": data},
     )
 
-    # mod_LuaEngine.conf
+
+def apply_mod_lua_engine_conf(server: Server):
     data = server.config.mod_lua_engine_conf.copy()
     data.update(
         {
@@ -54,3 +50,9 @@ def apply_server_config():
         path_output=acore_paths.path_mod_eluna_conf,
         data={"worldserver": data},
     )
+
+
+def apply_server_config(server: Server):
+    apply_authserver_conf(server)
+    apply_worldserver_conf(server)
+    apply_mod_lua_engine_conf(server)

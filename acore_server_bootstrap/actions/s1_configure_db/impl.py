@@ -4,7 +4,7 @@ import typing as T
 import subprocess
 from jinja2 import Template
 
-from ..logger import logger
+from ...server import Server
 
 from .paths import (
     path_create_mysql_database_aws_rds_sql_template,
@@ -13,6 +13,9 @@ from .paths import (
 )
 
 
+# ------------------------------------------------------------------------------
+# low level api
+# ------------------------------------------------------------------------------
 def run_sql(
     sql: str,
     host: str,
@@ -70,7 +73,6 @@ def render_create_mysql_user_sql_in_rds_mode(
     )
 
 
-@logger.start_and_end(msg="{func_name}")
 def run_create_mysql_database_sql_in_rds_mode(
     database_username: str,
     database_password: str,
@@ -101,7 +103,6 @@ def run_create_mysql_database_sql_in_rds_mode(
     )
 
 
-@logger.start_and_end(msg="{func_name}")
 def run_create_mysql_user_sql_in_rds_mode(
     database_username: str,
     database_password: str,
@@ -142,7 +143,6 @@ def render_update_realmlist_address_sql(server_public_ip: str) -> str:
     )
 
 
-@logger.start_and_end(msg="{func_name}")
 def run_update_realmlist_address_sql(
     server_public_ip: str,
     database_host: str,
@@ -171,24 +171,38 @@ def run_update_realmlist_address_sql(
     )
 
 
-@logger.start_and_end(msg="{func_name}")
-def configure_db():
-    from ..server import Server
+# ------------------------------------------------------------------------------
+# high level api
+# ------------------------------------------------------------------------------
+def create_database(server: Server):
+    run_create_mysql_database_sql_in_rds_mode(
+        database_username=server.config.db_username,
+        database_password=server.config.db_password,
+        database_host=server.metadata.rds_inst.endpoint,
+        database_admin_username="admin",
+        database_admin_password=server.config.db_admin_password,
+    )
 
-    server = Server.from_ec2_inside()
 
-    with logger.nested():
-        run_create_mysql_database_sql_in_rds_mode(
-            database_username=server.config.db_username,
-            database_password=server.config.db_password,
-            database_host=server.metadata.rds_inst.endpoint,
-            database_admin_username="admin",
-            database_admin_password=server.config.db_admin_password,
-        )
+def create_user(server: Server):
+    run_create_mysql_user_sql_in_rds_mode(
+        database_username=server.config.db_username,
+        database_password=server.config.db_password,
+        database_host=server.metadata.rds_inst.endpoint,
+        database_admin_username="admin",
+        database_admin_password=server.config.db_admin_password,
+    )
 
-        run_update_realmlist_address_sql(
-            server_public_ip=server.metadata.ec2_inst.public_ip,
-            database_host=server.metadata.rds_inst.endpoint,
-            database_admin_username="admin",
-            database_admin_password=server.config.db_admin_password,
-        )
+
+def update_realmlist(server: Server):
+    run_update_realmlist_address_sql(
+        server_public_ip=server.metadata.ec2_inst.public_ip,
+        database_host=server.metadata.rds_inst.endpoint,
+        database_admin_username="admin",
+        database_admin_password=server.config.db_admin_password,
+    )
+
+
+def configure_db(server: Server):
+    create_database(server)
+    update_realmlist(server)

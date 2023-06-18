@@ -6,7 +6,7 @@ omit =
     acore_server_bootstrap/tests/*
     acore_server_bootstrap/vendor/*
     acore_server_bootstrap/_version.py
-    acore_server_bootstrap/cli.py
+    acore_server_bootstrap/cli/*
     acore_server_bootstrap/paths.py
 
 [report]

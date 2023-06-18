@@ -1,7 +1,12 @@
 # -*- coding: utf-8 -*-
 
 import fire
-from ..s1_configure_db.api import configure_db
+from ..s1_configure_db.api import (
+    run_create_mysql_database_sql_in_rds_mode,
+    run_create_mysql_user_sql_in_rds_mode,
+    run_update_realmlist_address_sql,
+    configure_db,
+)
 from ..s2_apply_server_config.api import apply_server_config
 from ..s3_run_server.api import (
     run_server,
@@ -15,9 +20,17 @@ class Command:
     def info(self):
         print("Hello acore server bootstrap user!")
 
-    def s01_configure_db(self):
+    def bootstrap(self):
         """
-        Step 1. Configure database.
+        Bootstrap a new EC2 server.
+        """
+        configure_db()
+        apply_server_config()
+        run_server()
+
+    def db_configure(self):
+        """
+        Configure database.
         """
         configure_db()
 

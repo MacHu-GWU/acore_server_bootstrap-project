@@ -1,21 +1,14 @@
 # -*- coding: utf-8 -*-
 
-from pathlib import Path
-
-from ..vendor.screen_session_manager import (
+from ...vendor.screen_session_manager import (
     run_script,
-    list_session as _list_session,
+    list_session,
     enter_session,
     stop_script,
 )
-from ..logger import logger
-
-_dir_here = Path(__file__).absolute().parent
-path_auth_sh = _dir_here / "auth.sh"
-path_world_sh = _dir_here / "world.sh"
+from .paths import path_auth_sh, path_world_sh
 
 
-@logger.start_and_end(msg="{func_name}")
 def run_server():
     """
     启动 auth 和 world 服务器.
@@ -24,12 +17,6 @@ def run_server():
     run_script(path_world_sh, name="world")
 
 
-@logger.start_and_end(msg="{func_name}")
-def list_session():
-    _list_session()
-
-
-@logger.start_and_end(msg="{func_name}")
 def enter_worldserver():
     """
     进入 world 服务器的交互式 shell.
@@ -37,7 +24,6 @@ def enter_worldserver():
     enter_session(name="world")
 
 
-@logger.start_and_end(msg="{func_name}")
 def stop_server():
     """
     停止 auth 和 world 服务器.
