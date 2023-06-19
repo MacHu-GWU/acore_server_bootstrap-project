@@ -52,7 +52,6 @@ dir_venv_bin = dir_venv / "bin"
 path_venv_bin_python = dir_venv_bin / "python"
 path_venv_bin_pip = dir_venv_bin / "pip"
 path_acorebs_cli = dir_venv_bin / "acorebs"
-# subprocess.run()
 
 
 dir_git_repos.mkdir(parents=True, exist_ok=True)
@@ -63,14 +62,14 @@ def clean_up():
     shutil.rmtree(dir_acore_server_bootstrap_project, ignore_errors=True)
 
 
-def clone_acore_server_bootstrap_git_repo():
+def clone_acore_server_bootstrap_git_repo(git_tag: T.Optional[str] = None):
     print("--- Cloning acore_server_bootstrap git repo...")
     with temp_cwd(dir_git_repos):
-        args = [
-            "git",
-            "clone",
-            "https://github.com/MacHu-GWU/acore_server_bootstrap-project.git",
-        ]
+        repo_url = "https://github.com/MacHu-GWU/acore_server_bootstrap-project.git"
+        if git_tag is None:
+            args = ["git", "clone", repo_url]
+        else:
+            args = ["git", "clone", "--depth", "1", "--branch", git_tag, repo_url]
         subprocess.run(args, check=True)
 
 
@@ -99,9 +98,9 @@ def run_bootstrap():
     subprocess.run(args, check=True)
 
 
-def run():
+def run(git_tag: T.Optional[str] = None):
     clean_up()
-    clone_acore_server_bootstrap_git_repo()
+    clone_acore_server_bootstrap_git_repo(git_tag=git_tag)
     create_virtualenv()
     install_dependencies()
     show_info()
@@ -109,4 +108,8 @@ def run():
 
 
 if __name__ == "__main__":
-    run()
+    if len(sys.argv) == 2:
+        git_tag = sys.argv[1]
+    else:
+        git_tag = None
+    run(git_tag=git_tag)

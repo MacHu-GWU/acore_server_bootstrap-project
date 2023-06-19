@@ -90,6 +90,12 @@ Welcome to ``acore_server_bootstrap`` Documentation
 
     python3.8 -c "$(curl -fsSL https://raw.githubusercontent.com/MacHu-GWU/acore_server_bootstrap-project/main/install.py)"
 
+如果你需要指定用特定的 ``acore_server_bootstrap`` `历史版本 <https://github.com/MacHu-GWU/acore_server_bootstrap-project/blob/main/release-history.rst>`_ 来运行, 你可以用下面的命令, 只要将最后一个参数改为版本号即可 (例如 ``0.1.1``):
+
+.. code-block:: bash
+
+    python -c "$(curl -fsSL https://raw.githubusercontent.com/MacHu-GWU/acore_server_bootstrap-project/main/install.py)" 0.1.1
+
 **acorebs 命令行工具**
 
 用 Python 安装了本项目后就可以使用 ``acorebs`` 命令行工具了. 所有在 bootstrap 期间做的事情都可以单独用命令行再做一次. 下面是所有命令的列表.
