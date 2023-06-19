@@ -75,7 +75,7 @@ def clone_acore_server_bootstrap_git_repo(git_tag: T.Optional[str] = None):
 
 def create_virtualenv():
     print("--- Creating virtualenv...")
-    args = ["/home/ubuntu/.pyenv/shims/virtualenv", "-p", f"python{PY_VER_MAJOR}.{PY_VER_MINOR}", f"{dir_venv}"]
+    args = ["virtualenv", "-p", f"python{PY_VER_MAJOR}.{PY_VER_MINOR}", f"{dir_venv}"]
     subprocess.run(args, check=True)
 
 
