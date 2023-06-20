@@ -8,13 +8,13 @@
 .. .. image:: https://codecov.io/gh/MacHu-GWU/acore_server_bootstrap-project/branch/main/graph/badge.svg
     :target: https://codecov.io/gh/MacHu-GWU/acore_server_bootstrap-project
 
-.. image:: https://img.shields.io/pypi/v/acore-server-bootstrap.svg
+.. .. image:: https://img.shields.io/pypi/v/acore-server-bootstrap.svg
     :target: https://pypi.python.org/pypi/acore-server-bootstrap
 
-.. image:: https://img.shields.io/pypi/l/acore-server-bootstrap.svg
+.. .. image:: https://img.shields.io/pypi/l/acore-server-bootstrap.svg
     :target: https://pypi.python.org/pypi/acore-server-bootstrap
 
-.. image:: https://img.shields.io/pypi/pyversions/acore-server-bootstrap.svg
+.. .. image:: https://img.shields.io/pypi/pyversions/acore-server-bootstrap.svg
     :target: https://pypi.python.org/pypi/acore-server-bootstrap
 
 .. image:: https://img.shields.io/badge/Release_History!--None.svg?style=social
@@ -112,6 +112,8 @@ Welcome to ``acore_server_bootstrap`` Documentation
 
     /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs info
 
+.. image:: ./docs/source/_static/icons/ec2.png
+
 ``acorebs bootstrap``:
 
 .. code-block:: bash
@@ -123,6 +125,8 @@ Welcome to ``acore_server_bootstrap`` Documentation
 .. code-block:: bash
 
     /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs disable_ubuntu_auto_upgrade
+
+.. image:: ./docs/source/_static/icons/rds.png
 
 ``acorebs create_database``:
 
@@ -148,6 +152,8 @@ Welcome to ``acore_server_bootstrap`` Documentation
 
     /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs configure_db
 
+.. image:: ./docs/source/_static/icons/config.png
+
 ``acorebs apply_authserver_conf``:
 
 .. code-block:: bash
@@ -171,6 +177,8 @@ Welcome to ``acore_server_bootstrap`` Documentation
 .. code-block:: bash
 
     /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs apply_server_config
+
+.. |pic1| image:: ./docs/source/_static/icons/wow.png
 
 ``acorebs run_server``:
 
@@ -213,3 +221,5 @@ To upgrade to latest version:
 .. code-block:: console
 
     $ pip install --upgrade acore-server-bootstrap
+
+https://img.shields.io/badge/any_✅-you_like-blue
