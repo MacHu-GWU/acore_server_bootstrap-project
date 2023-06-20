@@ -178,7 +178,7 @@ Welcome to ``acore_server_bootstrap`` Documentation
 
     /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs apply_server_config
 
-.. |pic1| image:: ./docs/source/_static/icons/wow.png
+.. image:: ./docs/source/_static/icons/wow.png
 
 ``acorebs run_server``:
 
