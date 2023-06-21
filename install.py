@@ -79,7 +79,7 @@ class PythonProject:
         shutil.rmtree(self.dir_project_root, ignore_errors=True)
 
     def clone_git_repo(self):
-        print("--- Cloning acore_server_bootstrap git repo...")
+        print(f"--- Cloning {self.project_name} git repo...")
         with temp_cwd(dir_git_repos):
             if self.git_tag is None:
                 args = ["git", "clone", self.git_repo_url]
@@ -96,7 +96,7 @@ class PythonProject:
             subprocess.run(args, check=True)
 
     def create_virtualenv(self):
-        print("--- Creating virtualenv...")
+        print(f"--- Creating virtualenv for {self.project_name} ...")
         args = [
             "virtualenv",
             "-p",
@@ -106,7 +106,7 @@ class PythonProject:
         subprocess.run(args, check=True)
 
     def install_dependencies(self):
-        print("--- Installing dependencies...")
+        print(f"--- Installing dependencies for {self.project_name} ...")
         with temp_cwd(self.dir_project_root):
             args = [f"{self.path_venv_bin_pip}", "install", "-e", "."]
             subprocess.run(args, check=True)
@@ -119,7 +119,7 @@ class AcoreServerBootStrapProject(PythonProject):
         return self.dir_venv_bin / "acorebs"
 
     def show_info(self):
-        print("--- Showing info...")
+        print(f"--- Showing {self.project_name} info ...")
         args = [f"{self.path_acorebs_cli}", "info"]
         subprocess.run(args, check=True)
 
