@@ -69,6 +69,7 @@ Welcome to ``acore_server_bootstrap`` Documentation
 5. 禁止 ubuntu 的自动升级.
 6. 对游戏服务器的启动脚本赋予可执行权限.
 7. 启动游戏服务器.
+8. 安装其他服务器组件, 例如 SOAP Agent, DB Agent 等.
 
 这一连串步骤在每次开新服, 或是修改了配置文件的时候都需要进行, 非常的麻烦. 为了解决这个问题, 我们开发了 ``acore_server_bootstrap`` 这个工具, 它可以帮助我们自动完成上述的所有步骤.
 
@@ -90,11 +91,11 @@ Welcome to ``acore_server_bootstrap`` Documentation
 
     python3.8 -c "$(curl -fsSL https://raw.githubusercontent.com/MacHu-GWU/acore_server_bootstrap-project/main/install.py)"
 
-如果你需要指定用特定的 ``acore_server_bootstrap`` `历史版本 <https://github.com/MacHu-GWU/acore_server_bootstrap-project/blob/main/release-history.rst>`_ 来运行, 你可以用下面的命令, 只要将最后一个参数改为版本号即可 (例如 ``0.1.1``):
+Bootstrap 的过程中需要将这几个项目安装到服务器上 `acore_server_bootstrap <https://github.com/MacHu-GWU/acore_server_bootstrap-project/blob/main/release-history.rst>`_, `acore_soap_app <https://github.com/MacHu-GWU/acore_soap_app-project/blob/main/release-history.rst>`_, 如果你需要指定它们的特定版本 (推荐这么做, 以增加确定性), 你可以用下面的命令, 只要修改对应项目的版本即可 (版本号就是 Git Tag 例如 ``0.1.1``):
 
 .. code-block:: bash
 
-    python -c "$(curl -fsSL https://raw.githubusercontent.com/MacHu-GWU/acore_server_bootstrap-project/main/install.py)" 0.1.1
+    python -c "$(curl -fsSL https://raw.githubusercontent.com/MacHu-GWU/acore_server_bootstrap-project/main/install.py)" --acore_server_bootstrap_version 0.1.1 --acore_soap_app_version 0.1.1
 
 **acorebs 命令行工具**
 
