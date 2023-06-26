@@ -3,7 +3,14 @@
 import subprocess
 
 from ...logger import logger
-from .paths import path_20auto_upgrade_source, path_20auto_upgrade_target
+from .paths import (
+    path_20auto_upgrade_source,
+    path_20auto_upgrade_target,
+    path_wserver_run_on_restart_sh_source,
+    path_wserver_run_on_restart_sh_target,
+    path_wserver_run_on_restart_py_source,
+    path_wserver_run_on_restart_py_target,
+)
 
 
 @logger.start_and_end(msg="{func_name}")
@@ -25,3 +32,32 @@ def disable_ubuntu_auto_upgrade():
         f"{path_20auto_upgrade_target}",
     ]
     subprocess.run(args, check=True)
+
+
+@logger.start_and_end(msg="{func_name}")
+def setup_ec2_run_on_restart_script():
+    args = [
+        f"sudo",
+        "cp",
+        f"{path_wserver_run_on_restart_sh_source}",
+        f"{path_wserver_run_on_restart_sh_target}",
+    ]
+    subprocess.run(args)
+    args = [
+        f"sudo",
+        "chmod",
+        "+x",
+        f"{path_wserver_run_on_restart_sh_target}",
+    ]
+    subprocess.run(args)
+
+    args = [
+        f"sudo",
+        "-H",
+        "-u",
+        "ubuntu",
+        "cp",
+        f"{path_wserver_run_on_restart_py_source}",
+        f"{path_wserver_run_on_restart_py_target}",
+    ]
+    subprocess.run(args)
