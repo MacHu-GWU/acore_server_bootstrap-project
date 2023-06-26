@@ -26,3 +26,4 @@ args = [
 ]
 res = subprocess.run(args, capture_output=True)
 lines.append(res.stdout.decode("utf-8"))
+p.write_text("\n".join(lines))
