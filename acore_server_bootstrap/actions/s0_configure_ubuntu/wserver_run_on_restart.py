@@ -17,6 +17,7 @@ args = [
     "run_check_server_status_cron_job",
 ]
 res = subprocess.run(args, capture_output=True)
+lines.append(res.stderr.decode("utf-8"))
 lines.append(res.stdout.decode("utf-8"))
 
 # --- run wow server
@@ -25,5 +26,6 @@ args = [
     "run_server",
 ]
 res = subprocess.run(args, capture_output=True)
+lines.append(res.stderr.decode("utf-8"))
 lines.append(res.stdout.decode("utf-8"))
 p.write_text("\n".join(lines))
