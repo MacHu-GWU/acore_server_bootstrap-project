@@ -1,6 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+"""
+This is a automation script that run the ``acsoap`` cli command
+to check the server status and update EC2 tags every 30 seconds.
+
+This script will be run as a cron job in ``screen``.
+"""
+
 import time
 import subprocess
 

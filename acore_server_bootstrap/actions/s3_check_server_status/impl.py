@@ -10,11 +10,15 @@ from .paths import path_server_monitor_py
 
 @logger.start_and_end(msg="{func_name}")
 def run_check_server_status_cron_job():
-    """ """
+    """
+    运行服务器状态健康检查定时脚本.
+    """
     run_script(path_server_monitor_py, name="servermonitor", print_func=logger.info)
 
 
 @logger.start_and_end(msg="{func_name}")
 def stop_check_server_status_cron_job():
-    """ """
+    """
+    停止服务器状态健康检查定时脚本.
+    """
     stop_script(name="servermonitor", print_func=logger.info)
