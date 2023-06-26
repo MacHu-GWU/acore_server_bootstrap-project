@@ -18,14 +18,20 @@ class Command:
         print("Hello acore server bootstrap user!")
 
     @logger.pretty_log()
-    def bootstrap(self):
+    def bootstrap_as_sudo(self):
         """
-        Bootstrap a new EC2 server.
+        Bootstrap a new EC2 server, run automations that requires sudo.
         """
         with logger.nested():
             api.disable_ubuntu_auto_upgrade()
             api.setup_ec2_run_on_restart_script()
 
+    @logger.pretty_log()
+    def bootstrap(self):
+        """
+        Bootstrap a new EC2 server, run automations that doesn't require sudo.
+        """
+        with logger.nested():
             server = api.Server.from_ec2_inside()
             api.configure_db(server)
             api.apply_server_config(server)

@@ -115,6 +115,12 @@ Bootstrap 的过程中需要将这几个项目安装到服务器上 `acore_serve
 
 .. image:: ./docs/source/_static/icons/ec2.png
 
+``acorebs bootstrap_as_sudo``:
+
+.. code-block:: bash
+
+    /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs bootstrap_as_sudo
+
 ``acorebs bootstrap``:
 
 .. code-block:: bash
