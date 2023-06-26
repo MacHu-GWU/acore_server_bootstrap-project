@@ -58,6 +58,7 @@ def setup_ec2_run_on_restart_script():
     - Run commands on your Linux instance at launch: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html
     - How can I utilize user data to automatically run a script with every restart of my Amazon EC2 Linux instance?: https://repost.aws/knowledge-center/execute-user-data-ec2
     """
+    logger.info(f"Create / update {path_wserver_run_on_restart_sh_target}")
     args = [
         f"sudo",
         "cp",
@@ -65,6 +66,8 @@ def setup_ec2_run_on_restart_script():
         f"{path_wserver_run_on_restart_sh_target}",
     ]
     subprocess.run(args)
+
+    logger.info(f"Change mode to executable")
     args = [
         f"sudo",
         "chmod",

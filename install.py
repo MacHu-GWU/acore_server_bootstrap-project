@@ -75,7 +75,7 @@ class PythonProject:
         return self.dir_venv_bin / "pip"
 
     def clean_up(self):
-        print(f"✅ Cleaning up '{self.dir_project_root}' folder...")
+        print(f"✅ Cleaning up '{self.dir_project_root}' folder ...")
         if self.dir_project_root.exists():
             shutil.rmtree(self.dir_project_root)
 
@@ -85,7 +85,7 @@ class PythonProject:
 
             has to be run as ubuntu user
         """
-        print(f"✅ Cloning {self.project_name} git repo...")
+        print(f"✅ Cloning {self.project_name} git repo ...")
         with temp_cwd(dir_git_repos):
             if self.git_tag is None:
                 args = [
@@ -95,8 +95,8 @@ class PythonProject:
                     "ubuntu",
                     "git",
                     "clone",
+                    "--quiet",
                     self.git_repo_url,
-                    "-q",
                 ]
             else:
                 args = [
@@ -106,10 +106,10 @@ class PythonProject:
                     "ubuntu",
                     "git",
                     "clone",
+                    "--quiet",
                     "--depth",
                     "1",
                     "--branch",
-                    "-q",
                     self.git_tag,
                     self.git_repo_url,
                 ]
@@ -149,9 +149,9 @@ class PythonProject:
                 "ubuntu",
                 f"{self.path_venv_bin_pip}",
                 "install",
+                "--quiet",
                 "-e",
                 ".",
-                "--quiet",
             ]
             subprocess.run(args, check=True)
 
