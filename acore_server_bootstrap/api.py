@@ -2,6 +2,7 @@
 
 from .server import Server
 from .actions.s0_configure_ubuntu.api import disable_ubuntu_auto_upgrade
+from .actions.s0_configure_ubuntu.api import setup_ec2_run_on_restart_script
 from .actions.s1_configure_db.api import create_database
 from .actions.s1_configure_db.api import create_user
 from .actions.s1_configure_db.api import update_realmlist

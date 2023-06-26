@@ -24,6 +24,7 @@ class Command:
         """
         with logger.nested():
             api.disable_ubuntu_auto_upgrade()
+            api.setup_ec2_run_on_restart_script()
 
             server = api.Server.from_ec2_inside()
             api.configure_db(server)

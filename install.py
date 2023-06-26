@@ -158,7 +158,11 @@ class AcoreServerBootStrapProject(PythonProject):
 
     def run_bootstrap(self):
         print("--- Run bootstrap...")
-        args = [f"{self.path_acorebs_cli}", "bootstrap"]
+        args = [
+            "sudo",
+            f"{self.path_acorebs_cli}",
+            "bootstrap",
+        ]
         subprocess.run(args, check=True)
 
 
