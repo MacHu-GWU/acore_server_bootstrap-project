@@ -83,9 +83,21 @@ class PythonProject:
         print(f"--- Cloning {self.project_name} git repo...")
         with temp_cwd(dir_git_repos):
             if self.git_tag is None:
-                args = ["git", "clone", self.git_repo_url]
+                args = [
+                    f"sudo",
+                    "-H",
+                    "-u",
+                    "ubuntu",
+                    "git",
+                    "clone",
+                    self.git_repo_url,
+                ]
             else:
                 args = [
+                    f"sudo",
+                    "-H",
+                    "-u",
+                    "ubuntu",
                     "git",
                     "clone",
                     "--depth",
@@ -99,6 +111,10 @@ class PythonProject:
     def create_virtualenv(self):
         print(f"--- Creating virtualenv for {self.project_name} ...")
         args = [
+            f"sudo",
+            "-H",
+            "-u",
+            "ubuntu",
             "virtualenv",
             "-p",
             f"python{PY_VER_MAJOR}.{PY_VER_MINOR}",
@@ -109,7 +125,16 @@ class PythonProject:
     def install_dependencies(self):
         print(f"--- Installing dependencies for {self.project_name} ...")
         with temp_cwd(self.dir_project_root):
-            args = [f"{self.path_venv_bin_pip}", "install", "-e", "."]
+            args = [
+                f"sudo",
+                "-H",
+                "-u",
+                "ubuntu",
+                f"{self.path_venv_bin_pip}",
+                "install",
+                "-e",
+                ".",
+            ]
             subprocess.run(args, check=True)
 
 
@@ -121,7 +146,14 @@ class AcoreServerBootStrapProject(PythonProject):
 
     def show_info(self):
         print(f"--- Showing {self.project_name} info ...")
-        args = [f"{self.path_acorebs_cli}", "info"]
+        args = [
+            f"sudo",
+            "-H",
+            "-u",
+            "ubuntu",
+            f"{self.path_acorebs_cli}",
+            "info",
+        ]
         subprocess.run(args, check=True)
 
     def run_bootstrap(self):
