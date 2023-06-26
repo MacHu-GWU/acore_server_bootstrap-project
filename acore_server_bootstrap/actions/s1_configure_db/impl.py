@@ -23,6 +23,7 @@ def run_sql(
     database: T.Optional[str] = None,
     username: T.Optional[str] = None,
     password: T.Optional[str] = None,
+    timeout: T.Optional[int] = None,
 ):
     """
     Run a SQL statement via MySQL cli.
@@ -39,7 +40,8 @@ def run_sql(
     if username:
         args.append(f"--user={username}")
         args.append(f"--password={password}")
-
+    if timeout:
+        args.append(f"--connect-timeout={timeout}")
     pipe = subprocess.Popen(["echo", sql], stdout=subprocess.PIPE)
     subprocess.run(args, stdin=pipe.stdout)
 
@@ -101,6 +103,7 @@ def run_create_mysql_database_sql_in_rds_mode(
         host=database_host,
         username=database_admin_username,
         password=database_admin_password,
+        timeout=3,
     )
 
 
@@ -131,6 +134,7 @@ def run_create_mysql_user_sql_in_rds_mode(
         host=database_host,
         username=database_admin_username,
         password=database_admin_password,
+        timeout=3,
     )
 
 
@@ -169,6 +173,7 @@ def run_update_realmlist_address_sql(
         database="acore_auth",
         username=database_admin_username,
         password=database_admin_password,
+        timeout=3,
     )
 
 
