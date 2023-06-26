@@ -8,8 +8,6 @@ from .paths import (
     path_20auto_upgrade_target,
     path_wserver_run_on_restart_sh_source,
     path_wserver_run_on_restart_sh_target,
-    path_wserver_run_on_restart_py_source,
-    path_wserver_run_on_restart_py_target,
 )
 
 
@@ -36,6 +34,30 @@ def disable_ubuntu_auto_upgrade():
 
 @logger.start_and_end(msg="{func_name}")
 def setup_ec2_run_on_restart_script():
+    """
+    EC2 可以用 User Data 来指定在第一次 Launch EC2 的时候运行一些自动化脚本来配置机器.
+    但是这只限于第一次 Launch. 作为游戏服务器, 我们是有一些自动化脚本需要在每次重启时运行的.
+    这里我们使用了 AWS 官方提议的方法, 将我们需要运行的自动化脚本放到
+    ``/var/lib/cloud/scripts/per-boot/`` 目录下. 这样每次重启的时候, 这个目录下的脚本都会被
+    ``cloud-init`` 这个每个 EC2 都会自动运行的启动程序所运行. 值得注意的是, 默认该目录下
+    的脚本会以 root 用户的身份运行, 而如果你的脚本需要创建一些给 ubuntu 用户使用的文件, 那么
+    就要注意用 ``sudo -H -u ubuntu ...`` 命令来切换用户了.
+
+    这里有三个文件比较重要:
+
+    - ``wserver-run-on-restart.sh``: 这个脚本要被放到 ``/var/lib/cloud/scripts/per-boot/``
+        目录下, 也是每次启动时要运行的自动化脚本. 注, 该脚本在 EC2 第一次 Launch 的时候不存在,
+        而是会由 User Data 中的脚本来创建.
+    - ``wserver_run_on_restart.py``: 这个脚本会被 ``wserver-run-on-restart.sh`` 所调用,
+        用来执行不需要 sudo 权限的任务.
+    - ``wserver_run_on_restart_as_sudo.py``: 这个脚本也会被 ``wserver-run-on-restart.sh``
+        所调用,用来执行不需要 sudo 权限的任务.
+
+    Reference:
+
+    - Run commands on your Linux instance at launch: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html
+    - How can I utilize user data to automatically run a script with every restart of my Amazon EC2 Linux instance?: https://repost.aws/knowledge-center/execute-user-data-ec2
+    """
     args = [
         f"sudo",
         "cp",
@@ -46,18 +68,7 @@ def setup_ec2_run_on_restart_script():
     args = [
         f"sudo",
         "chmod",
-        "777", # +x is just for the file owner, +744 is for everyone
+        "777", # +x is just for the file owner, +777 is for everyone
         f"{path_wserver_run_on_restart_sh_target}",
-    ]
-    subprocess.run(args)
-
-    args = [
-        f"sudo",
-        "-H",
-        "-u",
-        "ubuntu",
-        "cp",
-        f"{path_wserver_run_on_restart_py_source}",
-        f"{path_wserver_run_on_restart_py_target}",
     ]
     subprocess.run(args)

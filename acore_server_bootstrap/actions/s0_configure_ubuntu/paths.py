@@ -11,5 +11,3 @@ path_wserver_run_on_restart_sh_source = _dir_here / "wserver-run-on-restart.sh"
 path_wserver_run_on_restart_sh_target = Path(
     "/var/lib/cloud/scripts/per-boot/wserver-run-on-restart.sh"
 )
-path_wserver_run_on_restart_py_source = _dir_here / "wserver_run_on_restart.py"
-path_wserver_run_on_restart_py_target = Path("/home/ubuntu/wserver_run_on_restart.py")
