@@ -134,29 +134,31 @@ def run(
     acore_server_bootstrap_git_tag: T.Optional[str] = None,
     acore_soap_app_git_tag: T.Optional[str] = None,
 ):
-    acore_server_bootstrap_project = AcoreServerBootStrapProject(
-        project_name="acore_server_bootstrap",
-        git_repo_url="https://github.com/MacHu-GWU/acore_server_bootstrap-project.git",
-        dir_project_root=dir_git_repos.joinpath("acore_server_bootstrap-project"),
-        git_tag=acore_server_bootstrap_git_tag,
-    )
     acore_soap_app_project = PythonProject(
         project_name="acore_soap_app",
         git_repo_url="https://github.com/MacHu-GWU/acore_soap_app-project.git",
         dir_project_root=dir_git_repos.joinpath("acore_soap_app-project"),
         git_tag=acore_soap_app_git_tag,
     )
+
+    acore_server_bootstrap_project = AcoreServerBootStrapProject(
+        project_name="acore_server_bootstrap",
+        git_repo_url="https://github.com/MacHu-GWU/acore_server_bootstrap-project.git",
+        dir_project_root=dir_git_repos.joinpath("acore_server_bootstrap-project"),
+        git_tag=acore_server_bootstrap_git_tag,
+    )
+
+    acore_soap_app_project.clean_up()
+    acore_soap_app_project.clone_git_repo()
+    acore_soap_app_project.create_virtualenv()
+    acore_soap_app_project.install_dependencies()
+
     acore_server_bootstrap_project.clean_up()
     acore_server_bootstrap_project.clone_git_repo()
     acore_server_bootstrap_project.create_virtualenv()
     acore_server_bootstrap_project.install_dependencies()
     acore_server_bootstrap_project.show_info()
     acore_server_bootstrap_project.run_bootstrap()
-
-    acore_soap_app_project.clean_up()
-    acore_soap_app_project.clone_git_repo()
-    acore_soap_app_project.create_virtualenv()
-    acore_soap_app_project.install_dependencies()
 
 
 if __name__ == "__main__":
