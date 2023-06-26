@@ -83,19 +83,19 @@ Welcome to ``acore_server_bootstrap`` Documentation
 
 .. code-block:: bash
 
-    python3 -c "$(curl -fsSL https://raw.githubusercontent.com/MacHu-GWU/acore_server_bootstrap-project/main/install.py)"
+    sudo python3 -c "$(curl -fsSL https://raw.githubusercontent.com/MacHu-GWU/acore_server_bootstrap-project/main/install.py)"
 
 如果你需要指定用特定的 Python 版本来运行 (例如用 3.8), 你可以这样做:
 
 .. code-block:: bash
 
-    python3.8 -c "$(curl -fsSL https://raw.githubusercontent.com/MacHu-GWU/acore_server_bootstrap-project/main/install.py)"
+    sudo python3.8 -c "$(curl -fsSL https://raw.githubusercontent.com/MacHu-GWU/acore_server_bootstrap-project/main/install.py)"
 
 Bootstrap 的过程中需要将这几个项目安装到服务器上 `acore_server_bootstrap <https://github.com/MacHu-GWU/acore_server_bootstrap-project/blob/main/release-history.rst>`_, `acore_soap_app <https://github.com/MacHu-GWU/acore_soap_app-project/blob/main/release-history.rst>`_, 如果你需要指定它们的特定版本 (推荐这么做, 以增加确定性), 你可以用下面的命令, 只要修改对应项目的版本即可 (版本号就是 Git Tag 例如 ``0.1.1``):
 
 .. code-block:: bash
 
-    python -c "$(curl -fsSL https://raw.githubusercontent.com/MacHu-GWU/acore_server_bootstrap-project/main/install.py)" --acore_server_bootstrap_version 0.2.1 --acore_soap_app_version 0.3.1
+    sudo python -c "$(curl -fsSL https://raw.githubusercontent.com/MacHu-GWU/acore_server_bootstrap-project/main/install.py)" --acore_server_bootstrap_version 0.2.1 --acore_soap_app_version 0.3.1
 
 **acorebs 命令行工具**
 

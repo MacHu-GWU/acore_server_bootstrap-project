@@ -80,6 +80,11 @@ class PythonProject:
             shutil.rmtree(self.dir_project_root)
 
     def clone_git_repo(self):
+        """
+        .. note::
+
+            has to be run as ubuntu user
+        """
         print(f"--- Cloning {self.project_name} git repo...")
         with temp_cwd(dir_git_repos):
             if self.git_tag is None:
@@ -109,6 +114,11 @@ class PythonProject:
             subprocess.run(args, check=True)
 
     def create_virtualenv(self):
+        """
+        .. note::
+
+            has to be run as ubuntu user
+        """
         print(f"--- Creating virtualenv for {self.project_name} ...")
         args = [
             f"sudo",
@@ -123,6 +133,11 @@ class PythonProject:
         subprocess.run(args, check=True)
 
     def install_dependencies(self):
+        """
+        .. note::
+
+            has to be run as ubuntu user
+        """
         print(f"--- Installing dependencies for {self.project_name} ...")
         with temp_cwd(self.dir_project_root):
             args = [
@@ -145,6 +160,11 @@ class AcoreServerBootStrapProject(PythonProject):
         return self.dir_venv_bin / "acorebs"
 
     def show_info(self):
+        """
+        .. note::
+
+            has to be run as ubuntu user
+        """
         print(f"--- Showing {self.project_name} info ...")
         args = [
             f"sudo",
