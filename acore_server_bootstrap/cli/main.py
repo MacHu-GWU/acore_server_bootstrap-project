@@ -92,6 +92,18 @@ class Command:
         server = api.Server.from_ec2_inside()
         api.apply_server_config(server)
 
+    def run_check_server_status_cron_job(self):
+        """
+        Run the "check server status" cron job in screen session.
+        """
+        api.run_check_server_status_cron_job()
+
+    def stop_check_server_status_cron_job(self):
+        """
+        Stop the "check server status" cron job.
+        """
+        api.stop_check_server_status_cron_job()
+
     def run_server(self):
         """
         Run the game server in screen session.

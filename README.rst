@@ -181,6 +181,18 @@ Bootstrap 的过程中需要将这几个项目安装到服务器上 `acore_serve
 
 .. image:: ./docs/source/_static/icons/wow.png
 
+``acorebs run_check_server_status_cron_job``:
+
+.. code-block:: bash
+
+    /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs run_check_server_status_cron_job
+
+``acorebs stop_check_server_status_cron_job``:
+
+.. code-block:: bash
+
+    /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs stop_check_server_status_cron_job
+
 ``acorebs run_server``:
 
 .. code-block:: bash
