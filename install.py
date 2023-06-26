@@ -75,7 +75,7 @@ class PythonProject:
         return self.dir_venv_bin / "pip"
 
     def clean_up(self):
-        print(f"--- Cleaning up '{self.dir_project_root}' folder...")
+        print(f"✅ Cleaning up '{self.dir_project_root}' folder...")
         if self.dir_project_root.exists():
             shutil.rmtree(self.dir_project_root)
 
@@ -85,7 +85,7 @@ class PythonProject:
 
             has to be run as ubuntu user
         """
-        print(f"--- Cloning {self.project_name} git repo...")
+        print(f"✅ Cloning {self.project_name} git repo...")
         with temp_cwd(dir_git_repos):
             if self.git_tag is None:
                 args = [
@@ -96,6 +96,7 @@ class PythonProject:
                     "git",
                     "clone",
                     self.git_repo_url,
+                    "-q",
                 ]
             else:
                 args = [
@@ -108,6 +109,7 @@ class PythonProject:
                     "--depth",
                     "1",
                     "--branch",
+                    "-q",
                     self.git_tag,
                     self.git_repo_url,
                 ]
@@ -119,7 +121,7 @@ class PythonProject:
 
             has to be run as ubuntu user
         """
-        print(f"--- Creating virtualenv for {self.project_name} ...")
+        print(f"✅ Creating virtualenv for {self.project_name} ...")
         args = [
             f"sudo",
             "-H",
@@ -138,7 +140,7 @@ class PythonProject:
 
             has to be run as ubuntu user
         """
-        print(f"--- Installing dependencies for {self.project_name} ...")
+        print(f"✅ Installing dependencies for {self.project_name} ...")
         with temp_cwd(self.dir_project_root):
             args = [
                 f"sudo",
@@ -149,6 +151,7 @@ class PythonProject:
                 "install",
                 "-e",
                 ".",
+                "--quiet",
             ]
             subprocess.run(args, check=True)
 
@@ -165,7 +168,7 @@ class AcoreServerBootStrapProject(PythonProject):
 
             has to be run as ubuntu user
         """
-        print(f"--- Showing {self.project_name} info ...")
+        print(f"✅ Showing {self.project_name} info ...")
         args = [
             f"sudo",
             "-H",
@@ -177,7 +180,7 @@ class AcoreServerBootStrapProject(PythonProject):
         subprocess.run(args, check=True)
 
     def run_bootstrap(self):
-        print("--- Run bootstrap...")
+        print("✅ Run bootstrap...")
         args = [
             "sudo",
             f"{self.path_acorebs_cli}",
