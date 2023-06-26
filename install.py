@@ -45,7 +45,7 @@ PY_VER_MINOR = sys.version_info.minor
 
 # enumerate important paths
 dir_here = Path.cwd().absolute()
-dir_home = Path.home()
+dir_home = Path("/home/ubuntu")
 dir_git_repos = dir_home / "git_repos"
 
 dir_git_repos.mkdir(parents=True, exist_ok=True)
