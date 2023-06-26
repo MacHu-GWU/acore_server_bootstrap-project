@@ -76,7 +76,8 @@ class PythonProject:
 
     def clean_up(self):
         print(f"--- Cleaning up '{self.dir_project_root}' folder...")
-        shutil.rmtree(self.dir_project_root, ignore_errors=True)
+        if self.dir_project_root.exists():
+            shutil.rmtree(self.dir_project_root)
 
     def clone_git_repo(self):
         print(f"--- Cloning {self.project_name} git repo...")
@@ -145,12 +146,12 @@ def run(
         dir_project_root=dir_git_repos.joinpath("acore_soap_app-project"),
         git_tag=acore_soap_app_git_tag,
     )
-    acore_server_bootstrap_project.clean_up()
-    acore_server_bootstrap_project.clone_git_repo()
-    acore_server_bootstrap_project.create_virtualenv()
-    acore_server_bootstrap_project.install_dependencies()
-    acore_server_bootstrap_project.show_info()
-    acore_server_bootstrap_project.run_bootstrap()
+    # acore_server_bootstrap_project.clean_up()
+    # acore_server_bootstrap_project.clone_git_repo()
+    # acore_server_bootstrap_project.create_virtualenv()
+    # acore_server_bootstrap_project.install_dependencies()
+    # acore_server_bootstrap_project.show_info()
+    # acore_server_bootstrap_project.run_bootstrap()
 
     acore_soap_app_project.clean_up()
     acore_soap_app_project.clone_git_repo()
