@@ -115,7 +115,7 @@ class PythonProject:
             "-H",
             "-u",
             "ubuntu",
-            "virtualenv",
+            "/home/ubuntu/.pyenv/shims/virtualenv",
             "-p",
             f"python{PY_VER_MAJOR}.{PY_VER_MINOR}",
             f"{self.dir_venv}",
