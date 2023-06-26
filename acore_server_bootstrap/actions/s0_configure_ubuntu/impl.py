@@ -46,7 +46,7 @@ def setup_ec2_run_on_restart_script():
     args = [
         f"sudo",
         "chmod",
-        "+x",
+        "744",
         f"{path_wserver_run_on_restart_sh_target}",
     ]
     subprocess.run(args)
