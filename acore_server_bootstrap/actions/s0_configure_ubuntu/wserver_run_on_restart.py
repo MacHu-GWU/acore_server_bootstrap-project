@@ -10,15 +10,19 @@ p = Path("/home/ubuntu/wserver_run_on_restart_test.txt")
 p.write_text(str(random.randint(1, 100)))
 
 # --- run check server status cron job
+p = Path("/home/ubuntu/wserver_run_on_restart_test.log.txt")
+lines = list()
 args = [
     "/home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs",
     "run_check_server_status_cron_job",
 ]
-subprocess.run(args)
+res = subprocess.run(args, capture_output=True)
+lines.append(res.stdout.decode("utf-8"))
 
 # --- run wow server
 args = [
     "/home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs",
     "run_server",
 ]
-subprocess.run(args)
+res = subprocess.run(args, capture_output=True)
+lines.append(res.stdout.decode("utf-8"))
