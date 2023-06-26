@@ -218,6 +218,11 @@ def update_realmlist(server: Server):
 
 @logger.start_and_end(msg="{func_name}")
 def configure_db(server: Server):
+    """
+    你需要为游戏服务器创建数据库用户才能让游戏服务器和数据库互相认识. 每次启动 EC2 游戏服务器时,
+    如果不是在生产环境, IP 地址还可能会变, 导致我们需要更新 realmlist.address 字段的值.
+    这一步可以自动化配置跟数据库相关的操作.
+    """
     with logger.nested():
         create_database(server)
         update_realmlist(server)
