@@ -1,0 +1,100 @@
+<mxfile host="Electron" modified="2023-06-27T15:44:59.495Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.2.8 Chrome/112.0.5615.165 Electron/24.2.0 Safari/537.36" etag="xnRkQpeeyM1LgiywogbV" version="21.2.8" type="device">
+  <diagram name="Page-1" id="B-OgK3Gb66lDbuweliB3">
+    <mxGraphModel dx="1171" dy="840" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="HLK7O9YvH2v2glQxEQE2-1" value="" style="dashed=0;outlineConnect=0;html=1;align=center;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;shape=mxgraph.weblogos.github" parent="1" vertex="1">
+          <mxGeometry x="160" y="200" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="HLK7O9YvH2v2glQxEQE2-5" value="download and run" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="HLK7O9YvH2v2glQxEQE2-2" target="HLK7O9YvH2v2glQxEQE2-4" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HLK7O9YvH2v2glQxEQE2-2" value="Install.py" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=data:image/svg+xml,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDhweCIgd2lkdGg9IjQ4cHgiIHZpZXdCb3g9IjAgMCA0OCA0OCI+PHBhdGggZD0iTTI0LjA0Nyw1Yy0xLjU1NSwwLjAwNS0yLjYzMywwLjE0Mi0zLjkzNiwwLjM2N2MtMy44NDgsMC42Ny00LjU0OSwyLjA3Ny00LjU0OSw0LjY3VjE0aDl2MkgxNS4yMmgtNC4zNWMtMi42MzYsMC00Ljk0MywxLjI0Mi01LjY3NCw0LjIxOWMtMC44MjYsMy40MTctMC44NjMsNS41NTcsMCw5LjEyNUM1Ljg1MSwzMi4wMDUsNy4yOTQsMzQsOS45MzEsMzRoMy42MzJ2LTUuMTA0YzAtMi45NjYsMi42ODYtNS44OTYsNS43NjQtNS44OTZoNy4yMzZjMi41MjMsMCw1LTEuODYyLDUtNC4zNzd2LTguNTg2YzAtMi40MzktMS43NTktNC4yNjMtNC4yMTgtNC42NzJDMjcuNDA2LDUuMzU5LDI1LjU4OSw0Ljk5NCwyNC4wNDcsNXogTTE5LjA2Myw5YzAuODIxLDAsMS41LDAuNjc3LDEuNSwxLjUwMmMwLDAuODMzLTAuNjc5LDEuNDk4LTEuNSwxLjQ5OGMtMC44MzcsMC0xLjUtMC42NjQtMS41LTEuNDk4QzE3LjU2Myw5LjY4LDE4LjIyNiw5LDE5LjA2Myw5eiIgZmlsbD0iIzAyNzdCRCIvPjxwYXRoIGQ9Ik0yMy4wNzgsNDNjMS41NTUtMC4wMDUsMi42MzMtMC4xNDIsMy45MzYtMC4zNjdjMy44NDgtMC42Nyw0LjU0OS0yLjA3Nyw0LjU0OS00LjY3VjM0aC05di0yaDkuMzQzaDQuMzVjMi42MzYsMCw0Ljk0My0xLjI0Miw1LjY3NC00LjIxOWMwLjgyNi0zLjQxNywwLjg2My01LjU1NywwLTkuMTI1QzQxLjI3NCwxNS45OTUsMzkuODMxLDE0LDM3LjE5NCwxNGgtMy42MzJ2NS4xMDRjMCwyLjk2Ni0yLjY4Niw1Ljg5Ni01Ljc2NCw1Ljg5NmgtNy4yMzZjLTIuNTIzLDAtNSwxLjg2Mi01LDQuMzc3djguNTg2YzAsMi40MzksMS43NTksNC4yNjMsNC4yMTgsNC42NzJDMTkuNzE5LDQyLjY0MSwyMS41MzYsNDMuMDA2LDIzLjA3OCw0M3ogTTI4LjA2MywzOWMtMC44MjEsMC0xLjUtMC42NzctMS41LTEuNTAyYzAtMC44MzMsMC42NzktMS40OTgsMS41LTEuNDk4YzAuODM3LDAsMS41LDAuNjY0LDEuNSwxLjQ5OEMyOS41NjMsMzguMzIsMjguODk5LDM5LDI4LjA2MywzOXoiIGZpbGw9IiNGRkMxMDciLz48L3N2Zz4=;" parent="1" vertex="1">
+          <mxGeometry x="240" y="280" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="HLK7O9YvH2v2glQxEQE2-3" value="&lt;pre&gt;sudo python3.X -c &quot;$(curl -fsSL https://raw.githubusercontent.com/MacHu-GWU/acore_server_bootstrap-project/main/install.py)&quot; --acore_soap_app_version X.Y.Z --acore_server_bootstrap_version X.Y.Z&lt;/pre&gt;" style="text;html=1;strokeColor=default;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="40" y="80" width="1640" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="HLK7O9YvH2v2glQxEQE2-4" value="EC2" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=#F78E04;gradientDirection=north;fillColor=#D05C17;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.ec2;" parent="1" vertex="1">
+          <mxGeometry x="600" y="280" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="HLK7O9YvH2v2glQxEQE2-6" value="acore_server_bootstrap-project&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;span style=&quot;&quot;&gt;Git Repo&lt;/span&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="200" y="200" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="HLK7O9YvH2v2glQxEQE2-7" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="160" y="200" width="240" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="HLK7O9YvH2v2glQxEQE2-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="HLK7O9YvH2v2glQxEQE2-8" target="HLK7O9YvH2v2glQxEQE2-9" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HLK7O9YvH2v2glQxEQE2-8" value="git clone&lt;br&gt;acore_soap_app-project&lt;br&gt;Git Repo" style="dashed=0;outlineConnect=0;html=1;align=center;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;shape=mxgraph.weblogos.github" parent="1" vertex="1">
+          <mxGeometry x="200" y="560" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="HLK7O9YvH2v2glQxEQE2-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="HLK7O9YvH2v2glQxEQE2-9" target="HLK7O9YvH2v2glQxEQE2-10" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HLK7O9YvH2v2glQxEQE2-9" value="Create Virtualenv" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=data:image/svg+xml,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDhweCIgd2lkdGg9IjQ4cHgiIHZpZXdCb3g9IjAgMCA0OCA0OCI+PHBhdGggZD0iTTI0LjA0Nyw1Yy0xLjU1NSwwLjAwNS0yLjYzMywwLjE0Mi0zLjkzNiwwLjM2N2MtMy44NDgsMC42Ny00LjU0OSwyLjA3Ny00LjU0OSw0LjY3VjE0aDl2MkgxNS4yMmgtNC4zNWMtMi42MzYsMC00Ljk0MywxLjI0Mi01LjY3NCw0LjIxOWMtMC44MjYsMy40MTctMC44NjMsNS41NTcsMCw5LjEyNUM1Ljg1MSwzMi4wMDUsNy4yOTQsMzQsOS45MzEsMzRoMy42MzJ2LTUuMTA0YzAtMi45NjYsMi42ODYtNS44OTYsNS43NjQtNS44OTZoNy4yMzZjMi41MjMsMCw1LTEuODYyLDUtNC4zNzd2LTguNTg2YzAtMi40MzktMS43NTktNC4yNjMtNC4yMTgtNC42NzJDMjcuNDA2LDUuMzU5LDI1LjU4OSw0Ljk5NCwyNC4wNDcsNXogTTE5LjA2Myw5YzAuODIxLDAsMS41LDAuNjc3LDEuNSwxLjUwMmMwLDAuODMzLTAuNjc5LDEuNDk4LTEuNSwxLjQ5OGMtMC44MzcsMC0xLjUtMC42NjQtMS41LTEuNDk4QzE3LjU2Myw5LjY4LDE4LjIyNiw5LDE5LjA2Myw5eiIgZmlsbD0iIzAyNzdCRCIvPjxwYXRoIGQ9Ik0yMy4wNzgsNDNjMS41NTUtMC4wMDUsMi42MzMtMC4xNDIsMy45MzYtMC4zNjdjMy44NDgtMC42Nyw0LjU0OS0yLjA3Nyw0LjU0OS00LjY3VjM0aC05di0yaDkuMzQzaDQuMzVjMi42MzYsMCw0Ljk0My0xLjI0Miw1LjY3NC00LjIxOWMwLjgyNi0zLjQxNywwLjg2My01LjU1NywwLTkuMTI1QzQxLjI3NCwxNS45OTUsMzkuODMxLDE0LDM3LjE5NCwxNGgtMy42MzJ2NS4xMDRjMCwyLjk2Ni0yLjY4Niw1Ljg5Ni01Ljc2NCw1Ljg5NmgtNy4yMzZjLTIuNTIzLDAtNSwxLjg2Mi01LDQuMzc3djguNTg2YzAsMi40MzksMS43NTksNC4yNjMsNC4yMTgsNC42NzJDMTkuNzE5LDQyLjY0MSwyMS41MzYsNDMuMDA2LDIzLjA3OCw0M3ogTTI4LjA2MywzOWMtMC44MjEsMC0xLjUtMC42NzctMS41LTEuNTAyYzAtMC44MzMsMC42NzktMS40OTgsMS41LTEuNDk4YzAuODM3LDAsMS41LDAuNjY0LDEuNSwxLjQ5OEMyOS41NjMsMzguMzIsMjguODk5LDM5LDI4LjA2MywzOXoiIGZpbGw9IiNGRkMxMDciLz48L3N2Zz4=;" parent="1" vertex="1">
+          <mxGeometry x="400" y="560" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="HLK7O9YvH2v2glQxEQE2-10" value="Pip install&lt;br&gt;dependencies" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+          <mxGeometry x="600" y="560" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="HLK7O9YvH2v2glQxEQE2-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="HLK7O9YvH2v2glQxEQE2-14" target="HLK7O9YvH2v2glQxEQE2-16" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HLK7O9YvH2v2glQxEQE2-14" value="git clone&lt;br&gt;acore_server_bootstrap-project&lt;br&gt;Git Repo" style="dashed=0;outlineConnect=0;html=1;align=center;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;shape=mxgraph.weblogos.github" parent="1" vertex="1">
+          <mxGeometry x="200" y="720" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="HLK7O9YvH2v2glQxEQE2-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="HLK7O9YvH2v2glQxEQE2-16" target="HLK7O9YvH2v2glQxEQE2-17" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HLK7O9YvH2v2glQxEQE2-16" value="Create Virtualenv" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=data:image/svg+xml,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNDhweCIgd2lkdGg9IjQ4cHgiIHZpZXdCb3g9IjAgMCA0OCA0OCI+PHBhdGggZD0iTTI0LjA0Nyw1Yy0xLjU1NSwwLjAwNS0yLjYzMywwLjE0Mi0zLjkzNiwwLjM2N2MtMy44NDgsMC42Ny00LjU0OSwyLjA3Ny00LjU0OSw0LjY3VjE0aDl2MkgxNS4yMmgtNC4zNWMtMi42MzYsMC00Ljk0MywxLjI0Mi01LjY3NCw0LjIxOWMtMC44MjYsMy40MTctMC44NjMsNS41NTcsMCw5LjEyNUM1Ljg1MSwzMi4wMDUsNy4yOTQsMzQsOS45MzEsMzRoMy42MzJ2LTUuMTA0YzAtMi45NjYsMi42ODYtNS44OTYsNS43NjQtNS44OTZoNy4yMzZjMi41MjMsMCw1LTEuODYyLDUtNC4zNzd2LTguNTg2YzAtMi40MzktMS43NTktNC4yNjMtNC4yMTgtNC42NzJDMjcuNDA2LDUuMzU5LDI1LjU4OSw0Ljk5NCwyNC4wNDcsNXogTTE5LjA2Myw5YzAuODIxLDAsMS41LDAuNjc3LDEuNSwxLjUwMmMwLDAuODMzLTAuNjc5LDEuNDk4LTEuNSwxLjQ5OGMtMC44MzcsMC0xLjUtMC42NjQtMS41LTEuNDk4QzE3LjU2Myw5LjY4LDE4LjIyNiw5LDE5LjA2Myw5eiIgZmlsbD0iIzAyNzdCRCIvPjxwYXRoIGQ9Ik0yMy4wNzgsNDNjMS41NTUtMC4wMDUsMi42MzMtMC4xNDIsMy45MzYtMC4zNjdjMy44NDgtMC42Nyw0LjU0OS0yLjA3Nyw0LjU0OS00LjY3VjM0aC05di0yaDkuMzQzaDQuMzVjMi42MzYsMCw0Ljk0My0xLjI0Miw1LjY3NC00LjIxOWMwLjgyNi0zLjQxNywwLjg2My01LjU1NywwLTkuMTI1QzQxLjI3NCwxNS45OTUsMzkuODMxLDE0LDM3LjE5NCwxNGgtMy42MzJ2NS4xMDRjMCwyLjk2Ni0yLjY4Niw1Ljg5Ni01Ljc2NCw1Ljg5NmgtNy4yMzZjLTIuNTIzLDAtNSwxLjg2Mi01LDQuMzc3djguNTg2YzAsMi40MzksMS43NTksNC4yNjMsNC4yMTgsNC42NzJDMTkuNzE5LDQyLjY0MSwyMS41MzYsNDMuMDA2LDIzLjA3OCw0M3ogTTI4LjA2MywzOWMtMC44MjEsMC0xLjUtMC42NzctMS41LTEuNTAyYzAtMC44MzMsMC42NzktMS40OTgsMS41LTEuNDk4YzAuODM3LDAsMS41LDAuNjY0LDEuNSwxLjQ5OEMyOS41NjMsMzguMzIsMjguODk5LDM5LDI4LjA2MywzOXoiIGZpbGw9IiNGRkMxMDciLz48L3N2Zz4=;" parent="1" vertex="1">
+          <mxGeometry x="400" y="720" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="HLK7O9YvH2v2glQxEQE2-17" value="Pip install&lt;br&gt;dependencies" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+          <mxGeometry x="600" y="720" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="HLK7O9YvH2v2glQxEQE2-20" value="&lt;h1&gt;Disable Ubuntu Auto Update&lt;br&gt;&lt;/h1&gt;&lt;p&gt;主要是为了防止 Ubuntu 更新 MySQL Client 的小版本. 因为游戏服务器&lt;span style=&quot;background-color: initial;&quot;&gt;要求 MySQL Client 的版本跟服务器编译时的版本以及数据库的版本一摸一样.&lt;/span&gt;&lt;/p&gt;" style="text;html=1;strokeColor=default;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="200" y="880" width="480" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="HLK7O9YvH2v2glQxEQE2-21" value="&lt;h1&gt;Setup Run-on-Restart Script&lt;/h1&gt;&lt;p&gt;EC2 可以用 User Data 来指定在第一次 Launch EC2 的时候运行一些自动化脚本来配置机器.&amp;nbsp;&lt;span style=&quot;background-color: initial;&quot;&gt;但是这只限于第一次 Launch. 作为游戏服务器, 我们是有一些自动化脚本需要在每次重启时运行的.&lt;/span&gt;&lt;/p&gt;" style="text;html=1;strokeColor=default;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="200" y="1040" width="480" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="HLK7O9YvH2v2glQxEQE2-22" value="&lt;h1&gt;Configure DB&lt;/h1&gt;&lt;p&gt;你需要为游戏服务器创建数据库用户才能让游戏服务器和数据库互相认识. 每次启动 EC2 游戏服务器时, 如果不是在生产环境, IP 地址还可能会变, 导致我们需要更新 realmlist.address 字段的值. 这一步可以自动化配置跟数据库相关的操作.&lt;/p&gt;" style="text;html=1;strokeColor=default;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="200" y="1200" width="480" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="HLK7O9YvH2v2glQxEQE2-23" value="root" style="shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#4495D1;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;shape=mxgraph.veeam.portal_admin;" parent="1" vertex="1">
+          <mxGeometry x="140" y="900" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="HLK7O9YvH2v2glQxEQE2-24" value="&lt;h1&gt;Apply Server Config&lt;/h1&gt;&lt;p&gt;游戏服务器有一些配置文件例如 authserver.conf, worldserver.conf. 这些配置文件被 acore_config 项目部署在了 S3 上. 每次启动服务器的时候我们可以重启拉取最新的配置并进行更新. 之后再启动服务器就能保证都是用的最新的配置了.&lt;/p&gt;" style="text;html=1;strokeColor=default;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="200" y="1360" width="480" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="HLK7O9YvH2v2glQxEQE2-25" value="root" style="shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#4495D1;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;shape=mxgraph.veeam.portal_admin;" parent="1" vertex="1">
+          <mxGeometry x="140" y="1060" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="HLK7O9YvH2v2glQxEQE2-26" value="ubuntu" style="shadow=0;dashed=0;html=1;strokeColor=#BD7000;fillColor=#f0a30a;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;shape=mxgraph.veeam.portal_admin;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="140" y="1220" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="HLK7O9YvH2v2glQxEQE2-27" value="&lt;h1&gt;Run Server&lt;/h1&gt;&lt;p&gt;我们有一个 Screen 进程每 30 秒检查一次 worldserver 的健康状态, 如果挂掉了就自动重启. 在 bootstrap 中我们要运行这个脚本&lt;/p&gt;" style="text;html=1;strokeColor=default;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="200" y="1680" width="480" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="HLK7O9YvH2v2glQxEQE2-28" value="&lt;h1&gt;Run Check Server Status Cron Job&lt;/h1&gt;&lt;p&gt;我们有一个定时任务每 30 秒检查一次服务器的状态并将其写入 EC2 Tags 中. 在 bootstrap 中我们要运行这个脚本.&lt;/p&gt;" style="text;html=1;strokeColor=default;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="200" y="1520" width="480" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="HLK7O9YvH2v2glQxEQE2-29" value="ubuntu" style="shadow=0;dashed=0;html=1;strokeColor=#BD7000;fillColor=#f0a30a;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;shape=mxgraph.veeam.portal_admin;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="140" y="1380" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="HLK7O9YvH2v2glQxEQE2-30" value="ubuntu" style="shadow=0;dashed=0;html=1;strokeColor=#BD7000;fillColor=#f0a30a;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;shape=mxgraph.veeam.portal_admin;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="140" y="1540" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="HLK7O9YvH2v2glQxEQE2-31" value="ubuntu" style="shadow=0;dashed=0;html=1;strokeColor=#BD7000;fillColor=#f0a30a;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;shape=mxgraph.veeam.portal_admin;fontColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="140" y="1700" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="HLK7O9YvH2v2glQxEQE2-32" value="Bootstrap Logics" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="80" y="480" width="680" height="1360" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

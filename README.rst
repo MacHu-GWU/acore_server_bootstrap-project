@@ -91,11 +91,11 @@ Welcome to ``acore_server_bootstrap`` Documentation
 
     sudo python3.8 -c "$(curl -fsSL https://raw.githubusercontent.com/MacHu-GWU/acore_server_bootstrap-project/main/install.py)"
 
-Bootstrap 的过程中需要将这几个项目安装到服务器上 `acore_server_bootstrap <https://github.com/MacHu-GWU/acore_server_bootstrap-project/blob/main/release-history.rst>`_, `acore_soap_app <https://github.com/MacHu-GWU/acore_soap_app-project/blob/main/release-history.rst>`_, 如果你需要指定它们的特定版本 (推荐这么做, 以增加确定性), 你可以用下面的命令, 只要修改对应项目的版本即可 (版本号就是 Git Tag 例如 ``0.1.1``):
+Bootstrap 的过程中需要将这几个项目安装到服务器上 `acore_server_bootstrap <https://github.com/MacHu-GWU/acore_server_bootstrap-project/blob/main/release-history.rst>`_, `acore_soap_app <https://github.com/MacHu-GWU/acore_soap_app-project/blob/main/release-history.rst>`_, 如果你需要指定它们的特定版本 (**推荐这么做, 以增加确定性**), 你可以用下面的命令, 只要修改对应项目的版本即可 (版本号就是 Git Tag 例如 ``0.1.1``):
 
 .. code-block:: bash
 
-    sudo python -c "$(curl -fsSL https://raw.githubusercontent.com/MacHu-GWU/acore_server_bootstrap-project/main/install.py)" --acore_server_bootstrap_version 0.3.1 --acore_soap_app_version 0.3.2
+    sudo python3.8 -c "$(curl -fsSL https://raw.githubusercontent.com/MacHu-GWU/acore_server_bootstrap-project/main/install.py)" --acore_server_bootstrap_version 0.3.1 --acore_soap_app_version 0.3.2
 
 **acorebs 命令行工具**
 
@@ -115,19 +115,19 @@ Bootstrap 的过程中需要将这几个项目安装到服务器上 `acore_serve
 
 .. image:: ./docs/source/_static/icons/ec2.png
 
-``acorebs bootstrap_as_sudo``:
+``acorebs bootstrap_as_sudo`` 初始化 EC2 游戏服务器 (需要 sudo 权限的部分):
 
 .. code-block:: bash
 
     /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs bootstrap_as_sudo
 
-``acorebs bootstrap``:
+``acorebs bootstrap`` 初始化 EC2 游戏服务器:
 
 .. code-block:: bash
 
     /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs bootstrap
 
-``acorebs disable_ubuntu_auto_upgrade``:
+``acorebs disable_ubuntu_auto_upgrade`` 禁用 ubuntu 自动升级 (防止 MySQL client 版本升级):
 
 .. code-block:: bash
 
@@ -135,25 +135,25 @@ Bootstrap 的过程中需要将这几个项目安装到服务器上 `acore_serve
 
 .. image:: ./docs/source/_static/icons/rds.png
 
-``acorebs create_database``:
+``acorebs create_database`` 创建 acore_auth, acore_characters, acore_world 数据库:
 
 .. code-block:: bash
 
     /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs create_database
 
-``acorebs create_user``:
+``acorebs create_user`` 创建 acore 数据库用户:
 
 .. code-block:: bash
 
     /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs create_user
 
-``acorebs update_realmlist``:
+``acorebs update_realmlist`` 更新服务器 realmlist 表:
 
 .. code-block:: bash
 
     /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs update_realmlist
 
-``acorebs configure_db``:
+``acorebs configure_db`` 配置数据库:
 
 .. code-block:: bash
 
@@ -161,25 +161,25 @@ Bootstrap 的过程中需要将这几个项目安装到服务器上 `acore_serve
 
 .. image:: ./docs/source/_static/icons/config.png
 
-``acorebs apply_authserver_conf``:
+``acorebs apply_authserver_conf`` 更新 authserver.conf 配置文件:
 
 .. code-block:: bash
 
     /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs apply_authserver_conf
 
-``acorebs apply_worldserver_conf``:
+``acorebs apply_worldserver_conf`` 更新 worldserver.conf 配置文件:
 
 .. code-block:: bash
 
     /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs apply_worldserver_conf
 
-``acorebs apply_mod_lua_engine_conf``:
+``acorebs apply_mod_lua_engine_conf`` 更新 mod-LuaEngine.conf 配置文件:
 
 .. code-block:: bash
 
     /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs apply_mod_lua_engine_conf
 
-``acorebs apply_server_config``:
+``acorebs apply_server_config`` 更新以上所有的配置文件:
 
 .. code-block:: bash
 
@@ -187,37 +187,37 @@ Bootstrap 的过程中需要将这几个项目安装到服务器上 `acore_serve
 
 .. image:: ./docs/source/_static/icons/wow.png
 
-``acorebs run_check_server_status_cron_job``:
+``acorebs run_check_server_status_cron_job`` 启动检测服务器状态的定时任务:
 
 .. code-block:: bash
 
     /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs run_check_server_status_cron_job
 
-``acorebs stop_check_server_status_cron_job``:
+``acorebs stop_check_server_status_cron_job`` 关闭检测服务器状态的定时任务:
 
 .. code-block:: bash
 
     /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs stop_check_server_status_cron_job
 
-``acorebs run_server``:
+``acorebs run_server`` 运行魔兽服务器:
 
 .. code-block:: bash
 
     /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs run_server
 
-``acorebs list_session``:
+``acorebs list_session`` 列出 screen sessions:
 
 .. code-block:: bash
 
     /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs list_session
 
-``acorebs enter_worldserver``:
+``acorebs enter_worldserver`` 进入 worldserver 交互式命令行:
 
 .. code-block:: bash
 
     /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs enter_worldserver
 
-``acorebs stop_server``:
+``acorebs stop_server`` 停止魔兽服务器:
 
 .. code-block:: bash
 
