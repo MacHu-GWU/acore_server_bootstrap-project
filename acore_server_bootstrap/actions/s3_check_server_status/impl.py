@@ -13,6 +13,7 @@ def run_check_server_status_cron_job():
     """
     运行服务器状态健康检查定时脚本.
     """
+    logger.info(f"run {path_server_monitor_py} in screen session")
     run_script(path_server_monitor_py, name="servermonitor", print_func=logger.info)
 
 

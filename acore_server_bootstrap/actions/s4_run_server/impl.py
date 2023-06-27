@@ -15,6 +15,7 @@ def run_server():
     """
     启动 auth 和 world 服务器.
     """
+    logger.info(f"run {path_auth_sh} and {path_auth_sh} in screen session")
     run_script(path_auth_sh, name="auth", print_func=logger.info)
     run_script(path_world_sh, name="world", print_func=logger.info)
 
