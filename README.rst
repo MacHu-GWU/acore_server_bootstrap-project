@@ -240,5 +240,3 @@ To upgrade to latest version:
 .. code-block:: console
 
     $ pip install --upgrade acore-server-bootstrap
-
-https://img.shields.io/badge/any_✅-you_like-blue
