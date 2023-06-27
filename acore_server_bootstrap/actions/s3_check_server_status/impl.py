@@ -5,7 +5,6 @@ from ...vendor.screen_session_manager import (
     run_script,
     stop_script,
 )
-from .paths import path_server_monitor_py
 from .paths import path_server_monitor_sh
 
 
@@ -14,8 +13,6 @@ def run_check_server_status_cron_job():
     """
     运行服务器状态健康检查定时脚本.
     """
-    # logger.info(f"run {path_server_monitor_py} in screen session")
-    # run_script(path_server_monitor_py, name="servermonitor", print_func=logger.info)
     logger.info(f"run {path_server_monitor_sh} in screen session")
     run_script(path_server_monitor_sh, name="servermonitor", print_func=logger.info)
 
