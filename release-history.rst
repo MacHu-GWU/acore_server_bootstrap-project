@@ -15,6 +15,20 @@ x.y.z (Backlog)
 **Miscellaneous**
 
 
+0.3.1 (2023-06-27)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Features and Improvements**
+
+- Automatically launch the server status monitor cron job. It writes the server status to EC2 tag every 30 seconds.
+- Add run-on-restart script to automatically restart necessary cron job and the server after reboot.
+
+**Minor Improvements**
+
+- refactor the code to make it more readable.
+- ensure the ``sudo`` command is used when necessary.
+- ensure the ``sudo -H -u ubuntu`` command is used when necessary.
+
+
 0.2.1 (2023-06-19)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 **Features and Improvements**
