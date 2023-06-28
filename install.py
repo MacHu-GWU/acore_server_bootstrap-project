@@ -162,23 +162,6 @@ class AcoreServerBootStrapProject(PythonProject):
     def path_acorebs_cli(self) -> Path:
         return self.dir_venv_bin / "acorebs"
 
-    def hello(self):
-        """
-        .. note::
-
-            has to be run as ubuntu user
-        """
-        print(f"✅ Showing {self.project_name} info ...")
-        args = [
-            f"sudo",
-            "-H",
-            "-u",
-            "ubuntu",
-            f"{self.path_acorebs_cli}",
-            "hello",
-        ]
-        subprocess.run(args, check=True)
-
     def run_bootstrap(self):
         print("✅ Run bootstrap...")
         args = [
@@ -244,7 +227,10 @@ def run(
     acore_server_bootstrap_project.clone_git_repo()
     acore_server_bootstrap_project.create_virtualenv()
     acore_server_bootstrap_project.install_dependencies()
-    acore_server_bootstrap_project.hello()
+    path_cli = acore_server_bootstrap_project.dir_venv_bin / "acorebs"
+    args = [f"{path_cli}", "hello"]
+    subprocess.run(args, check=True)
+
     acore_server_bootstrap_project.run_bootstrap()
 
 
