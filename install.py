@@ -200,14 +200,21 @@ class AcoreServerBootStrapProject(PythonProject):
 
 
 def run(
-    acore_server_bootstrap_git_tag: T.Optional[str] = None,
     acore_soap_app_git_tag: T.Optional[str] = None,
+    acore_db_app_git_tag: T.Optional[str] = None,
+    acore_server_bootstrap_git_tag: T.Optional[str] = None,
 ):
     acore_soap_app_project = PythonProject(
         project_name="acore_soap_app",
         git_repo_url="https://github.com/MacHu-GWU/acore_soap_app-project.git",
         dir_project_root=dir_git_repos.joinpath("acore_soap_app-project"),
         git_tag=acore_soap_app_git_tag,
+    )
+    acore_db_app_project = PythonProject(
+        project_name="acore_db_app",
+        git_repo_url="https://github.com/MacHu-GWU/acore_db_app-project.git",
+        dir_project_root=dir_git_repos.joinpath("acore_db_app-project"),
+        git_tag=acore_db_app_git_tag,
     )
 
     acore_server_bootstrap_project = AcoreServerBootStrapProject(
@@ -222,6 +229,11 @@ def run(
     acore_soap_app_project.create_virtualenv()
     acore_soap_app_project.install_dependencies()
 
+    acore_db_app_project.clean_up()
+    acore_db_app_project.clone_git_repo()
+    acore_db_app_project.create_virtualenv()
+    acore_db_app_project.install_dependencies()
+
     acore_server_bootstrap_project.clean_up()
     acore_server_bootstrap_project.clone_git_repo()
     acore_server_bootstrap_project.create_virtualenv()
@@ -234,10 +246,12 @@ if __name__ == "__main__":
     from argparse import ArgumentParser
 
     parser = ArgumentParser(prog="acore_server_bootstrap")
-    parser.add_argument("--acore_server_bootstrap_version", required=False)
     parser.add_argument("--acore_soap_app_version", required=False)
+    parser.add_argument("--acore_db_app_version", required=False)
+    parser.add_argument("--acore_server_bootstrap_version", required=False)
     args = parser.parse_args()
     run(
-        acore_server_bootstrap_git_tag=args.acore_server_bootstrap_version,
         acore_soap_app_git_tag=args.acore_soap_app_version,
+        acore_db_app_git_tag=args.acore_db_app_version,
+        acore_server_bootstrap_git_tag=args.acore_server_bootstrap_version,
     )
