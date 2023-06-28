@@ -12,7 +12,7 @@ class Command:
     acore server bootstrap command line interface.
     """
 
-    def info(self):
+    def hello(self):
         """
         Print welcome message.
         """

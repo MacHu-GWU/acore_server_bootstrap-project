@@ -162,7 +162,7 @@ class AcoreServerBootStrapProject(PythonProject):
     def path_acorebs_cli(self) -> Path:
         return self.dir_venv_bin / "acorebs"
 
-    def show_info(self):
+    def hello(self):
         """
         .. note::
 
@@ -175,7 +175,7 @@ class AcoreServerBootStrapProject(PythonProject):
             "-u",
             "ubuntu",
             f"{self.path_acorebs_cli}",
-            "info",
+            "hello",
         ]
         subprocess.run(args, check=True)
 
@@ -228,17 +228,23 @@ def run(
     acore_soap_app_project.clone_git_repo()
     acore_soap_app_project.create_virtualenv()
     acore_soap_app_project.install_dependencies()
+    path_cli = acore_soap_app_project.dir_venv_bin / "acsoap"
+    args = [f"{path_cli}", "hello"]
+    subprocess.run(args, check=True)
 
     acore_db_app_project.clean_up()
     acore_db_app_project.clone_git_repo()
     acore_db_app_project.create_virtualenv()
     acore_db_app_project.install_dependencies()
+    path_cli = acore_db_app_project.dir_venv_bin / "acdb"
+    args = [f"{path_cli}", "hello"]
+    subprocess.run(args, check=True)
 
     acore_server_bootstrap_project.clean_up()
     acore_server_bootstrap_project.clone_git_repo()
     acore_server_bootstrap_project.create_virtualenv()
     acore_server_bootstrap_project.install_dependencies()
-    acore_server_bootstrap_project.show_info()
+    acore_server_bootstrap_project.hello()
     acore_server_bootstrap_project.run_bootstrap()
 
 
