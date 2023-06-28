@@ -4,8 +4,9 @@ import typing as T
 import subprocess
 from jinja2 import Template
 
+from acore_server.api import Server
+
 from ...logger import logger
-from ...server import Server
 
 from .paths import (
     path_create_mysql_database_aws_rds_sql_template,

@@ -2,9 +2,8 @@
 
 import acore_paths.api as acore_paths
 from acore_conf.api import apply_changes
-
+from acore_server.api import Server
 from ...logger import logger
-from ...server import Server
 
 
 @logger.start_and_end(msg="{func_name}")

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import fire
+from acore_server.api import Server
 
 from .. import api
 from ..logger import logger
@@ -32,7 +33,7 @@ class Command:
         Bootstrap a new EC2 server, run automations that doesn't require sudo.
         """
         with logger.nested():
-            server = api.Server.from_ec2_inside()
+            server = Server.from_ec2_inside()
             api.configure_db(server)
             api.apply_server_config(server)
             api.run_check_server_status_cron_job()
@@ -48,56 +49,56 @@ class Command:
         """
         Create the database user for game server and three initial databases.
         """
-        server = api.Server.from_ec2_inside()
+        server = Server.from_ec2_inside()
         api.create_database(server)
 
     def create_user(self):
         """
         Create the database user for game server.
         """
-        server = api.Server.from_ec2_inside()
+        server = Server.from_ec2_inside()
         api.create_user(server)
 
     def update_realmlist(self):
         """
         Update 'acore_auth.realmlist.address'.
         """
-        server = api.Server.from_ec2_inside()
+        server = Server.from_ec2_inside()
         api.update_realmlist(server)
 
     def configure_db(self):
         """
         Configure the database for game server.
         """
-        server = api.Server.from_ec2_inside()
+        server = Server.from_ec2_inside()
         api.configure_db(server)
 
     def apply_authserver_conf(self):
         """
         Update the authserver.conf.
         """
-        server = api.Server.from_ec2_inside()
+        server = Server.from_ec2_inside()
         api.apply_authserver_conf(server)
 
     def apply_worldserver_conf(self):
         """
         Update the worldserver.conf.
         """
-        server = api.Server.from_ec2_inside()
+        server = Server.from_ec2_inside()
         api.apply_worldserver_conf(server)
 
     def apply_mod_lua_engine_conf(self):
         """
         Update the mod_LuaEngine.conf.
         """
-        server = api.Server.from_ec2_inside()
+        server = Server.from_ec2_inside()
         api.apply_mod_lua_engine_conf(server)
 
     def apply_server_config(self):
         """
         Update the authserver.conf, worldserver.conf and mod_LuaEngine.conf.
         """
-        server = api.Server.from_ec2_inside()
+        server = Server.from_ec2_inside()
         api.apply_server_config(server)
 
     def run_check_server_status_cron_job(self):

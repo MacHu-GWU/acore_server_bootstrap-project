@@ -6,8 +6,8 @@ from acore_server_bootstrap import api
 def test():
     _ = api
 
-    _ = api.Server
     _ = api.disable_ubuntu_auto_upgrade
+    _ = api.setup_ec2_run_on_restart_script
     _ = api.create_database
     _ = api.create_user
     _ = api.update_realmlist
@@ -16,6 +16,8 @@ def test():
     _ = api.apply_worldserver_conf
     _ = api.apply_mod_lua_engine_conf
     _ = api.apply_server_config
+    _ = api.run_check_server_status_cron_job
+    _ = api.stop_check_server_status_cron_job
     _ = api.run_server
     _ = api.list_session
     _ = api.enter_worldserver
