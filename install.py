@@ -228,7 +228,7 @@ def run(
     acore_server_bootstrap_project.create_virtualenv()
     acore_server_bootstrap_project.install_dependencies()
     path_cli = acore_server_bootstrap_project.dir_venv_bin / "acorebs"
-    args = [f"{path_cli}", "info"]
+    args = [f"{path_cli}", "hello"]
     subprocess.run(args, check=True)
 
     acore_server_bootstrap_project.run_bootstrap()
