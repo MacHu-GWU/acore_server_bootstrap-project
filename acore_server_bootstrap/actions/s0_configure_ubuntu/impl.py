@@ -2,7 +2,9 @@
 
 import subprocess
 
-from ...logger import logger
+from light_emoji import common
+
+from ...logger import logger, file_logger
 from .paths import (
     path_20auto_upgrade_source,
     path_20auto_upgrade_target,
@@ -21,7 +23,9 @@ def disable_ubuntu_auto_upgrade():
 
     - https://askubuntu.com/questions/1322292/how-do-i-turn-off-automatic-updates-completely-and-for-real
     """
+    file_logger.debug(f"{common.play_or_pause} disable ubuntu auto upgrade, this step requires sudo")
     logger.info(f"Apply changes to {path_20auto_upgrade_target}")
+    file_logger.debug(f"copy {path_20auto_upgrade_source} to {path_20auto_upgrade_target}")
 
     args = [
         "sudo",
@@ -30,6 +34,7 @@ def disable_ubuntu_auto_upgrade():
         f"{path_20auto_upgrade_target}",
     ]
     subprocess.run(args, check=True)
+    file_logger.debug(f"{common.stop}")
 
 
 @logger.start_and_end(msg="{func_name}")
