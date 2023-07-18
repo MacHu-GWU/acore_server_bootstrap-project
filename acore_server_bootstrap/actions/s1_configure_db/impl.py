@@ -4,9 +4,11 @@ import typing as T
 import subprocess
 from jinja2 import Template
 
+from light_emoji import common
 from acore_server.api import Server
 
 from ...logger import logger
+from ...logger_ubuntu import get_logger
 
 from .paths import (
     path_create_mysql_database_aws_rds_sql_template,
@@ -183,6 +185,9 @@ def run_update_realmlist_address_sql(
 # ------------------------------------------------------------------------------
 @logger.start_and_end(msg="{func_name}")
 def create_database(server: Server):
+    file_logger = get_logger()
+    file_logger.debug(f"{common.play_or_pause} Create database user for game server ...")
+    file_logger.debug("Create three database acore_auth, acore_characters, acore_world ...")
     logger.info("Create database user for game server ...")
     logger.info("Create three database acore_auth, acore_characters, acore_world ...")
     run_create_mysql_database_sql_in_rds_mode(
@@ -192,6 +197,7 @@ def create_database(server: Server):
         database_admin_username="admin",
         database_admin_password=server.config.db_admin_password,
     )
+    file_logger.debug(f"{common.stop}")
 
 
 @logger.start_and_end(msg="{func_name}")
@@ -208,6 +214,8 @@ def create_user(server: Server):
 
 @logger.start_and_end(msg="{func_name}")
 def update_realmlist(server: Server):
+    file_logger = get_logger()
+    file_logger.debug(f"{common.play_or_pause} Update acore_auth.realmlist.address ...")
     logger.info("Update acore_auth.realmlist.address ...")
     run_update_realmlist_address_sql(
         server_public_ip=server.metadata.ec2_inst.public_ip,
@@ -215,6 +223,7 @@ def update_realmlist(server: Server):
         database_admin_username="admin",
         database_admin_password=server.config.db_admin_password,
     )
+    file_logger.debug(f"{common.stop}")
 
 
 @logger.start_and_end(msg="{func_name}")
@@ -224,6 +233,9 @@ def configure_db(server: Server):
     如果不是在生产环境, IP 地址还可能会变, 导致我们需要更新 realmlist.address 字段的值.
     这一步可以自动化配置跟数据库相关的操作.
     """
+    file_logger = get_logger()
+    file_logger.debug(f"{common.play_or_pause} configure database ...")
     with logger.nested():
         create_database(server)
         update_realmlist(server)
+    file_logger.debug(f"{common.stop}")

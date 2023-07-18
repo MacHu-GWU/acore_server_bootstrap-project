@@ -21,4 +21,5 @@ dir_htmlcov = dir_project_root / "htmlcov"
 path_cov_index_html = dir_htmlcov / "index.html"
 dir_unit_test = dir_project_root / "tests"
 
-path_log = dir_project_root / "log.txt"
+path_root_log = dir_project_root / "log_root.txt"
+path_ubuntu_log = dir_project_root / "log_ubuntu.txt"

@@ -4,7 +4,9 @@ import subprocess
 
 from light_emoji import common
 
-from ...logger import logger, file_logger
+from ...logger import logger
+from ...logger_root import get_logger
+
 from .paths import (
     path_20auto_upgrade_source,
     path_20auto_upgrade_target,
@@ -23,9 +25,10 @@ def disable_ubuntu_auto_upgrade():
 
     - https://askubuntu.com/questions/1322292/how-do-i-turn-off-automatic-updates-completely-and-for-real
     """
+    file_logger = get_logger()
     file_logger.debug(f"{common.play_or_pause} disable ubuntu auto upgrade, this step requires sudo")
-    logger.info(f"Apply changes to {path_20auto_upgrade_target}")
     file_logger.debug(f"copy {path_20auto_upgrade_source} to {path_20auto_upgrade_target}")
+    logger.info(f"Apply changes to {path_20auto_upgrade_target}")
 
     args = [
         "sudo",
@@ -34,6 +37,7 @@ def disable_ubuntu_auto_upgrade():
         f"{path_20auto_upgrade_target}",
     ]
     subprocess.run(args, check=True)
+
     file_logger.debug(f"{common.stop}")
 
 
@@ -63,6 +67,9 @@ def setup_ec2_run_on_restart_script():
     - Run commands on your Linux instance at launch: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html
     - How can I utilize user data to automatically run a script with every restart of my Amazon EC2 Linux instance?: https://repost.aws/knowledge-center/execute-user-data-ec2
     """
+    file_logger = get_logger()
+    file_logger.debug(f"{common.play_or_pause} setup ec2 run on restart script, this step requires sudo")
+    file_logger.debug(f"copy {path_wserver_run_on_restart_sh_source} to {path_wserver_run_on_restart_sh_target}")
     logger.info(f"Create / update {path_wserver_run_on_restart_sh_target}")
     args = [
         f"sudo",
@@ -72,6 +79,7 @@ def setup_ec2_run_on_restart_script():
     ]
     subprocess.run(args)
 
+    file_logger.debug(f"Change mode to executable for {path_wserver_run_on_restart_sh_target}")
     logger.info(f"Change mode to executable")
     args = [
         f"sudo",
@@ -80,3 +88,5 @@ def setup_ec2_run_on_restart_script():
         f"{path_wserver_run_on_restart_sh_target}",
     ]
     subprocess.run(args)
+
+    file_logger.debug(f"{common.stop}")
