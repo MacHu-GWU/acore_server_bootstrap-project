@@ -197,7 +197,6 @@ def create_database(server: Server):
         database_admin_username="admin",
         database_admin_password=server.config.db_admin_password,
     )
-    file_logger.debug(f"{common.stop}")
 
 
 @logger.start_and_end(msg="{func_name}")
@@ -223,7 +222,6 @@ def update_realmlist(server: Server):
         database_admin_username="admin",
         database_admin_password=server.config.db_admin_password,
     )
-    file_logger.debug(f"{common.stop}")
 
 
 @logger.start_and_end(msg="{func_name}")
@@ -238,4 +236,3 @@ def configure_db(server: Server):
     with logger.nested():
         create_database(server)
         update_realmlist(server)
-    file_logger.debug(f"{common.stop}")

@@ -38,8 +38,6 @@ def disable_ubuntu_auto_upgrade():
     ]
     subprocess.run(args, check=True)
 
-    file_logger.debug(f"{common.stop}")
-
 
 @logger.start_and_end(msg="{func_name}")
 def setup_ec2_run_on_restart_script():
@@ -88,5 +86,3 @@ def setup_ec2_run_on_restart_script():
         f"{path_wserver_run_on_restart_sh_target}",
     ]
     subprocess.run(args)
-
-    file_logger.debug(f"{common.stop}")

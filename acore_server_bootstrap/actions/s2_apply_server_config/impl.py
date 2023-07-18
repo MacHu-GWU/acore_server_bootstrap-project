@@ -3,11 +3,17 @@
 import acore_paths.api as acore_paths
 from acore_conf.api import apply_changes
 from acore_server.api import Server
+
+from light_emoji import common
+
 from ...logger import logger
+from ...logger_ubuntu import get_logger
 
 
 @logger.start_and_end(msg="{func_name}")
 def apply_authserver_conf(server: Server):
+    file_logger = get_logger()
+    file_logger.debug(f"{common.play_or_pause} apply authserver config ...")
     data = server.config.authserver_conf.copy()
     data.update(
         {
@@ -27,6 +33,8 @@ def apply_authserver_conf(server: Server):
 
 @logger.start_and_end(msg="{func_name}")
 def apply_worldserver_conf(server: Server):
+    file_logger = get_logger()
+    file_logger.debug(f"{common.play_or_pause} apply worldserver config ...")
     data = server.config.worldserver_conf.copy()
     data.update(
         {
@@ -50,6 +58,8 @@ def apply_worldserver_conf(server: Server):
 
 @logger.start_and_end(msg="{func_name}")
 def apply_mod_lua_engine_conf(server: Server):
+    file_logger = get_logger()
+    file_logger.debug(f"{common.play_or_pause} apply mod lua engine config ...")
     data = server.config.mod_lua_engine_conf.copy()
     data.update(
         {
@@ -67,6 +77,8 @@ def apply_mod_lua_engine_conf(server: Server):
 
 @logger.start_and_end(msg="{func_name}")
 def apply_server_config(server: Server):
+    file_logger = get_logger()
+    file_logger.debug(f"{common.play_or_pause} apply server config ...")
     with logger.nested():
         apply_authserver_conf(server)
         apply_worldserver_conf(server)
