@@ -95,7 +95,7 @@ Bootstrap 的过程中需要将这几个项目安装到服务器上 `acore_serve
 
 .. code-block:: bash
 
-    sudo python3.8 -c "$(curl -fsSL https://raw.githubusercontent.com/MacHu-GWU/acore_server_bootstrap-project/main/install.py)" --acore_server_bootstrap_version 0.3.1 --acore_soap_app_version 0.3.2
+    sudo python3.8 -c "$(curl -fsSL https://raw.githubusercontent.com/MacHu-GWU/acore_server_bootstrap-project/main/install.py)" --acore_server_bootstrap_version 0.4.1 --acore_soap_app_version 0.3.4 --acore_db_app_version 0.2.2
 
 **acorebs 命令行工具**
 
@@ -107,11 +107,11 @@ Bootstrap 的过程中需要将这几个项目安装到服务器上 `acore_serve
 
     /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs
 
-``acorebs info``:
+``acorebs hello``:
 
 .. code-block:: bash
 
-    /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs info
+    /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs hello
 
 .. image:: ./docs/source/_static/icons/ec2.png
 

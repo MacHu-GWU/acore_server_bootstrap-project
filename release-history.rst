@@ -15,6 +15,19 @@ x.y.z (Backlog)
 **Miscellaneous**
 
 
+0.4.1 (2023-07-17)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Features and Improvements**
+
+- Automatically configure `acore_db_app <https://github.com/MacHu-GWU/acore_db_app-project>`_ project and CLI agent.
+
+**Minor Improvements**
+
+**Bugfixes**
+
+**Miscellaneous**
+
+
 0.3.1 (2023-06-27)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 **Features and Improvements**
