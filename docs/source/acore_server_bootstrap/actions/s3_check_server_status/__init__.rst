@@ -1,7 +1,7 @@
-s3_run_server
-=============
+s3_check_server_status
+======================
 
-.. automodule:: acore_server_bootstrap.actions.s3_run_server
+.. automodule:: acore_server_bootstrap.actions.s3_check_server_status
     :members:
 
 sub packages and modules

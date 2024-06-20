@@ -14,5 +14,6 @@ sub packages and modules
     cli <cli/__init__>
     api <api>
     logger <logger>
-    server <server>
+    logger_root <logger_root>
+    logger_ubuntu <logger_ubuntu>
     
