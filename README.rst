@@ -2,7 +2,7 @@
     :target: https://acore-server-bootstrap.readthedocs.io/en/latest/
     :alt: Documentation Status
 
-.. image:: https://github.com/MacHu-GWU/acore_server_bootstrap-project/workflows/CI/badge.svg
+.. image:: https://github.com/MacHu-GWU/acore_server_bootstrap-project/actions/workflows/main.yml/badge.svg
     :target: https://github.com/MacHu-GWU/acore_server_bootstrap-project/actions?query=workflow:CI
 
 .. .. image:: https://codecov.io/gh/MacHu-GWU/acore_server_bootstrap-project/branch/main/graph/badge.svg
@@ -52,6 +52,9 @@
 
 Welcome to ``acore_server_bootstrap`` Documentation
 ==============================================================================
+.. image:: https://acore-server-bootstrap.readthedocs.io/en/latest/_static/acore_server_bootstrap-logo.png
+    :target: https://acore-server-bootstrap.readthedocs.io/en/latest/
+
 **项目背景**
 
 在大规模游戏服务器 (Azerothcore) 部署的流程中, 我们通常会将其分为以下几个步骤:
@@ -75,7 +78,7 @@ Welcome to ``acore_server_bootstrap`` Documentation
 
 **Note**
 
-    注意, 该工具建立在特定的服务器的文件目录结构之上. 如果服务器的目录结构不符合预期, 则无法使用该工具.
+    注意, 该工具假设服务器的文件目录严格遵循了 `acore_paths <https://github.com/MacHu-GWU/acore_paths-project>`_ 项目中的定义. 如果该假设不满足, 则无法使用该工具. 例如我们构建的服务器核心要在 ``/home/ubuntu/azeroth-server`` 目录下.
 
 **如何进行 Bootstrap**
 
