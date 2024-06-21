@@ -242,3 +242,33 @@ class Remoter:
             ssm_client=ssm_client,
             server=server,
         )
+
+    def install(
+        self,
+        ssm_client: T.Optional["SSMClient"] = None,
+        server: T.Optional[Server] = None,
+        python_version: str = "3.11",
+        acore_soap_app_version: T.Optional[str] = None,
+        acore_db_app_version: T.Optional[str] = None,
+        acore_server_bootstrap_version: T.Optional[str] = None,
+    ):
+        if ssm_client is None:
+            ssm_client = self.ssm_client
+        if server is None:
+            server = self.server
+        command = server.build_bootstrap_command(
+            python_version=python_version,
+            acore_soap_app_version=acore_soap_app_version,
+            acore_db_app_version=acore_db_app_version,
+            acore_server_bootstrap_version=acore_server_bootstrap_version,
+        )
+        command_invocation_list = run_shell_script_sync(
+            ssm_client=ssm_client,
+            commands=command,
+            instance_ids=server.metadata.ec2_inst.id,
+            delays=10,
+            timeout=180,
+        )
+        command_invocation = command_invocation_list[0]
+        print(command_invocation.StandardOutputContent.strip())
+        return command_invocation
