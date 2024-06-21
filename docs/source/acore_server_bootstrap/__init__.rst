@@ -16,4 +16,5 @@ sub packages and modules
     logger <logger>
     logger_root <logger_root>
     logger_ubuntu <logger_ubuntu>
+    remoter <remoter>
     
