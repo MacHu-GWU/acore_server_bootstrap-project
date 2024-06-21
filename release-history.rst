@@ -15,19 +15,37 @@ x.y.z (Backlog)
 **Miscellaneous**
 
 
-1.x.y (Backlog)
+1.0.1 (Backlog)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+This version is NOT a backward in-compatible release.
+
 **Features and Improvements**
 
-- Add ``Remoter``
+- Add ``Remoter`` to allow run bootstrap remotely.
+- Supported bootstrap command:
+    - ``acorebs hello``
+    - ``acorebs bootstrap_as_sudo``
+    - ``acorebs bootstrap``
+    - ``acorebs disable_ubuntu_auto_upgrade``
+    - ``acorebs setup_ec2_run_on_restart_script``
+    - ``acorebs create_database``
+    - ``acorebs create_user``
+    - ``acorebs update_realmlist``
+    - ``acorebs configure_db``
+    - ``acorebs apply_authserver_conf``
+    - ``acorebs apply_worldserver_conf``
+    - ``acorebs apply_mod_lua_engine_conf``
+    - ``acorebs apply_server_config``
+    - ``acorebs run_check_server_status_cron_job``
+    - ``acorebs stop_check_server_status_cron_job``
+    - ``acorebs run_server``
+    - ``acorebs list_session``
+    - ``acorebs enter_worldserver``
+    - ``acorebs stop_server``
 
 **Minor Improvements**
 
 - Rework the documentation website
-
-**Bugfixes**
-
-**Miscellaneous**
 
 
 0.4.2 (2023-07-18)
