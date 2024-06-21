@@ -45,6 +45,12 @@ class Command:
         """
         api.disable_ubuntu_auto_upgrade()
 
+    def setup_ec2_run_on_restart_script(self):
+        """
+        Setup cloud init script to run on restart.
+        """
+        api.setup_ec2_run_on_restart_script()
+
     def create_database(self):
         """
         Create the database user for game server and three initial databases.

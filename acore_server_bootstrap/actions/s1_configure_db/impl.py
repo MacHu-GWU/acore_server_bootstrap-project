@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 
+"""
+todo: add docstring
+"""
+
 import typing as T
 import subprocess
 from jinja2 import Template
@@ -188,6 +192,11 @@ def run_update_realmlist_address_sql(
 # ------------------------------------------------------------------------------
 @logger.start_and_end(msg="{func_name}")
 def create_database(server: Server):
+    """
+    在第一次开服的时候, 游戏数据库中是没有 ``acore_auth``, ``acore_characters``,
+    ``acore_world`` 三个数据库的, 我们需要创建他们. 这个函数是幂等的, 也就是说如果某一个数据库已经
+    存在了, 那么这个函数会跳过这个数据库的创建.
+    """
     file_logger = get_logger()
     file_logger.debug(
         f"{common.play_or_pause} Create database user for game server ..."
@@ -208,6 +217,12 @@ def create_database(server: Server):
 
 @logger.start_and_end(msg="{func_name}")
 def create_user(server: Server):
+    """
+    游戏服务器连接数据库不是用的 Admin User (这样安全隐患太大了), 而是用我们创建的 Acore DB User.
+    在第一次开服的时候我们需要创建这些 User 并且给它们对应的 database 的访问权限.
+    并且, 如果我们修改了 configuration, 其中就包含了数据库用户名和密码, 我们同样要删掉
+    旧的 DB User 并重新配置. 这个任务就是做这件事的.
+    """
     logger.info("Create database user for game server ...")
     run_create_mysql_user_sql_in_rds_mode(
         database_username=server.config.db_username,
@@ -220,6 +235,11 @@ def create_user(server: Server):
 
 @logger.start_and_end(msg="{func_name}")
 def update_realmlist(server: Server):
+    """
+    在 ``acore_auth.realmlist`` 表中我们需要设定我们的游戏服务器的 IP. 这样登录服务器鉴权成功后
+    才能将游戏客户端的连接导向到我们的游戏服务器. 而由于我们的 IP 地址可能在 EC2 重启后发生变化,
+    所以我们需要在每次重启 EC2 后更新这个表.
+    """
     file_logger = get_logger()
     file_logger.debug(f"{common.play_or_pause} Update acore_auth.realmlist.address ...")
     logger.info("Update acore_auth.realmlist.address ...")
@@ -237,6 +257,11 @@ def configure_db(server: Server):
     你需要为游戏服务器创建数据库用户才能让游戏服务器和数据库互相认识. 每次启动 EC2 游戏服务器时,
     如果不是在生产环境, IP 地址还可能会变, 导致我们需要更新 realmlist.address 字段的值.
     这一步可以自动化配置跟数据库相关的操作.
+
+    See:
+
+    - :func:`create_database`
+    - :func:`update_realmlist`
     """
     file_logger = get_logger()
     file_logger.debug(f"{common.play_or_pause} configure database ...")

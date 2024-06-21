@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 
+"""
+todo: add docstring
+"""
+
 import subprocess
 
 from light_emoji import common
@@ -19,15 +23,39 @@ from .paths import (
 def disable_ubuntu_auto_upgrade():
     """
     关闭 Ubuntu 的自动更新. 主要是为了防止 Ubuntu 更新 MySQL Client 的小版本. 因为游戏服务器
-    要求 MySQL Client 的版本跟服务器编译时的版本以及数据库的版本一摸一样.
+    要求 MySQL Client 的版本跟服务器编译时的版本一摸一样 (数据库的版本可以比核心和 MySQL client 高).
+
+    **如何判断 Auto Upgrade 是否已经被禁用**
+
+    .. code-block:: bash
+
+        cat /etc/apt/apt.conf.d/20auto-upgrades
+
+    如果你看到了如下内容, 说明 **自动升级没有被禁用**
+
+    .. code-block::
+
+        APT::Periodic::Update-Package-Lists "1";
+        APT::Periodic::Unattended-Upgrade "1";
+
+    如果你看到了如下内容, 说明 **自动升级已经被禁用**
+
+    .. code-block::
+
+        APT::Periodic::Update-Package-Lists "0";
+        APT::Periodic::Unattended-Upgrade "0";
 
     Reference:
 
     - https://askubuntu.com/questions/1322292/how-do-i-turn-off-automatic-updates-completely-and-for-real
     """
     file_logger = get_logger()
-    file_logger.debug(f"{common.play_or_pause} disable ubuntu auto upgrade, this step requires sudo")
-    file_logger.debug(f"copy {path_20auto_upgrade_source} to {path_20auto_upgrade_target}")
+    file_logger.debug(
+        f"{common.play_or_pause} disable ubuntu auto upgrade, this step requires sudo"
+    )
+    file_logger.debug(
+        f"copy {path_20auto_upgrade_source} to {path_20auto_upgrade_target}"
+    )
     logger.info(f"Apply changes to {path_20auto_upgrade_target}")
 
     args = [
@@ -66,8 +94,12 @@ def setup_ec2_run_on_restart_script():
     - How can I utilize user data to automatically run a script with every restart of my Amazon EC2 Linux instance?: https://repost.aws/knowledge-center/execute-user-data-ec2
     """
     file_logger = get_logger()
-    file_logger.debug(f"{common.play_or_pause} setup ec2 run on restart script, this step requires sudo")
-    file_logger.debug(f"copy {path_wserver_run_on_restart_sh_source} to {path_wserver_run_on_restart_sh_target}")
+    file_logger.debug(
+        f"{common.play_or_pause} setup ec2 run on restart script, this step requires sudo"
+    )
+    file_logger.debug(
+        f"copy {path_wserver_run_on_restart_sh_source} to {path_wserver_run_on_restart_sh_target}"
+    )
     logger.info(f"Create / update {path_wserver_run_on_restart_sh_target}")
     args = [
         f"sudo",
@@ -77,12 +109,14 @@ def setup_ec2_run_on_restart_script():
     ]
     subprocess.run(args)
 
-    file_logger.debug(f"Change mode to executable for {path_wserver_run_on_restart_sh_target}")
+    file_logger.debug(
+        f"Change mode to executable for {path_wserver_run_on_restart_sh_target}"
+    )
     logger.info(f"Change mode to executable")
     args = [
         f"sudo",
         "chmod",
-        "777", # +x is just for the file owner, +777 is for everyone
+        "777",  # +x is just for the file owner, +777 is for everyone
         f"{path_wserver_run_on_restart_sh_target}",
     ]
     subprocess.run(args)

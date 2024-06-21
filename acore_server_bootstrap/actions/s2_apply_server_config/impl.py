@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 
+"""
+todo: add docstring
+"""
+
 import acore_paths.api as acore_paths
 from acore_conf.api import apply_changes
 from acore_server.api import Server
@@ -12,6 +16,11 @@ from ...logger_ubuntu import get_logger
 
 @logger.start_and_end(msg="{func_name}")
 def apply_authserver_conf(server: Server):
+    """
+    从 S3 上拉取 configuration 数据, 并把
+    `acore_server_config.api.Server.authserver_conf <https://acore-server-config.readthedocs.io/en/latest/acore_server_config/config/define/server.html#acore_server_config.config.define.server.Server>`_
+    中的数据应用到 ``authserver.conf`` 文件中.
+    """
     file_logger = get_logger()
     file_logger.debug(f"{common.play_or_pause} apply authserver config ...")
     data = server.config.authserver_conf.copy()
@@ -33,6 +42,11 @@ def apply_authserver_conf(server: Server):
 
 @logger.start_and_end(msg="{func_name}")
 def apply_worldserver_conf(server: Server):
+    """
+    从 S3 上拉取 configuration 数据, 并把
+    `acore_server_config.api.Server.worldserver_conf <https://acore-server-config.readthedocs.io/en/latest/acore_server_config/config/define/server.html#acore_server_config.config.define.server.Server>`_
+    中的数据应用到 ``worldserver.conf`` 文件中.
+    """
     file_logger = get_logger()
     file_logger.debug(f"{common.play_or_pause} apply worldserver config ...")
     data = server.config.worldserver_conf.copy()
@@ -58,6 +72,11 @@ def apply_worldserver_conf(server: Server):
 
 @logger.start_and_end(msg="{func_name}")
 def apply_mod_lua_engine_conf(server: Server):
+    """
+    从 S3 上拉取 configuration 数据, 并把
+    `acore_server_config.api.Server.mod_lua_engine_conf <https://acore-server-config.readthedocs.io/en/latest/acore_server_config/config/define/server.html#acore_server_config.config.define.server.Server>`_
+    中的数据应用到 ``mod_LuaEngine.conf`` 文件中.
+    """
     file_logger = get_logger()
     file_logger.debug(f"{common.play_or_pause} apply mod lua engine config ...")
     data = server.config.mod_lua_engine_conf.copy()
@@ -77,6 +96,13 @@ def apply_mod_lua_engine_conf(server: Server):
 
 @logger.start_and_end(msg="{func_name}")
 def apply_server_config(server: Server):
+    """
+    Run the following functions:
+
+    - :func:`apply_authserver_conf`
+    - :func:`apply_worldserver_conf`
+    - :func:`apply_mod_lua_engine_conf`
+    """
     file_logger = get_logger()
     file_logger.debug(f"{common.play_or_pause} apply server config ...")
     with logger.nested():

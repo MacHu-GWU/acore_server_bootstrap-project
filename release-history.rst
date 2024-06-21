@@ -15,6 +15,21 @@ x.y.z (Backlog)
 **Miscellaneous**
 
 
+1.x.y (Backlog)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Features and Improvements**
+
+- Add ``Remoter``
+
+**Minor Improvements**
+
+- Rework the documentation website
+
+**Bugfixes**
+
+**Miscellaneous**
+
+
 0.4.2 (2023-07-18)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 **Minor Improvements**

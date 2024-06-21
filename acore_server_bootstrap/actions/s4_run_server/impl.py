@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 
+"""
+todo: add docstring
+"""
+
 from light_emoji import common
 
 from ...logger import logger
@@ -17,7 +21,7 @@ from .paths import path_auth_sh, path_world_sh
 @logger.start_and_end(msg="{func_name}")
 def run_server():
     """
-    启动 auth 和 world 服务器.
+    用 screen session 运行 auth 和 world 服务器.
     """
     file_logger = get_logger()
     file_logger.debug(f"{common.play_or_pause} run server ...")
@@ -29,7 +33,7 @@ def run_server():
 @logger.start_and_end(msg="{func_name}")
 def list_session():
     """
-    列出所有 screen session.
+    列出所有在运行中的 screen session.
     """
     _list_session()
 
@@ -37,7 +41,7 @@ def list_session():
 @logger.start_and_end(msg="{func_name}")
 def enter_worldserver():
     """
-    进入 world 服务器的交互式 shell.
+    通过 screen session 进入进入 worldserver 的交互式命令行.
     """
     enter_session(name="world", print_func=logger.info)
 
@@ -45,7 +49,7 @@ def enter_worldserver():
 @logger.start_and_end(msg="{func_name}")
 def stop_server():
     """
-    停止 auth 和 world 服务器.
+    用 screen session 杀死 authserver 和 worldserver.
     """
     stop_script(name="auth", print_func=logger.info)
     stop_script(name="world", print_func=logger.info)

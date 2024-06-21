@@ -93,6 +93,18 @@ class Remoter:
             sudo=True,
         )
 
+    def setup_ec2_run_on_restart_script(
+        self,
+        ssm_client: T.Optional["SSMClient"] = None,
+        server: T.Optional[Server] = None,
+    ):
+        return self._run(
+            action="setup_ec2_run_on_restart_script",
+            ssm_client=ssm_client,
+            server=server,
+            sudo=True,
+        )
+
     def create_database(
         self,
         ssm_client: T.Optional["SSMClient"] = None,
