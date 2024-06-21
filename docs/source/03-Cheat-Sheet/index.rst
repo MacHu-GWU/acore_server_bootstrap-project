@@ -1,6 +1,15 @@
+.. _cheat-sheet:
+
 Cheat Sheet
 ==============================================================================
+你可以用本文档来快速查询常用的 bootstrap 命令, 并复制粘贴.
 
+.. note::
+
+    **本文档中的所有命令都需要 SSH 到 EC2 游戏服务器上运行**. 除了 :ref:`just-bootstrap` 中的命令, 其他命令都要确保你已经下载安装了 `acore_server_bootstrap <https://github.com/MacHu-GWU/acore_server_bootstrap-project>`_. 如果你还没有安装, 你可以参考 :ref:`just-bootstrap` 来一键安装.
+
+
+.. _just-bootstrap:
 
 BootStrap
 ------------------------------------------------------------------------------
@@ -20,7 +29,7 @@ Bootstrap 的过程中需要将这几个项目安装到服务器上 `acore_serve
 
 .. code-block:: bash
 
-    sudo python3.8 -c "$(curl -fsSL https://raw.githubusercontent.com/MacHu-GWU/acore_server_bootstrap-project/main/install.py)" --acore_server_bootstrap_version 0.4.2 --acore_soap_app_version 0.3.6 --acore_db_app_version 0.2.2
+    sudo python3.11 -c "$(curl -fsSL https://raw.githubusercontent.com/MacHu-GWU/acore_server_bootstrap-project/main/install.py)" --acore_server_bootstrap_version 1.0.1 --acore_soap_app_version 0.3.6 --acore_db_app_version 0.2.3
 
 
 1. Configure Ubuntu
@@ -30,8 +39,6 @@ Bootstrap 的过程中需要将这几个项目安装到服务器上 `acore_serve
 
 1.1 Disable Ubuntu Auto Upgrade
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-``acorebs disable_ubuntu_auto_upgrade`` 禁用 ubuntu 自动升级 (防止 MySQL client 版本升级):
-
 .. code-block:: bash
 
     sudo /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs disable_ubuntu_auto_upgrade
@@ -39,6 +46,9 @@ Bootstrap 的过程中需要将这几个项目安装到服务器上 `acore_serve
 
 1.2 Setup EC2 Run On Restart Script
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. code-block:: bash
+
+    sudo /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs setup_ec2_run_on_restart_script
 
 
 2. Configure DB
