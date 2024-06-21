@@ -36,12 +36,7 @@ class Remoter:
             ssm_client=ssm_client,
             commands=command,
             instance_ids=server.metadata.ec2_inst.id,
-            # timeout_seconds
-            # gap
-            # raises
-            # delays
-            # timeout
-            # verbose
+            delays=1,
         )
         command_invocation = command_invocation_list[0]
         print(command_invocation.StandardOutputContent.strip())
