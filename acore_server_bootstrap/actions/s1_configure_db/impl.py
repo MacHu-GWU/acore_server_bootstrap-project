@@ -3,6 +3,7 @@
 import typing as T
 import subprocess
 from jinja2 import Template
+from pathlib_mate import Path
 
 from light_emoji import common
 from acore_server.api import Server
@@ -27,6 +28,7 @@ def run_sql(
     username: T.Optional[str] = None,
     password: T.Optional[str] = None,
     timeout: T.Optional[int] = None,
+    path: Path = Path.home().joinpath("tmp.sql"),
 ):
     """
     Run a SQL statement via MySQL cli.
@@ -45,8 +47,9 @@ def run_sql(
         args.append(f"--password={password}")
     if timeout:
         args.append(f"--connect-timeout={timeout}")
-    pipe = subprocess.Popen(["echo", sql], stdout=subprocess.PIPE)
-    subprocess.run(args, stdin=pipe.stdout)
+    path.write_text(sql)
+    with path.open("r") as f:
+        subprocess.run(args, stdin=f, text=True)
 
 
 def render_create_mysql_database_sql_in_rds_mode(
@@ -186,8 +189,12 @@ def run_update_realmlist_address_sql(
 @logger.start_and_end(msg="{func_name}")
 def create_database(server: Server):
     file_logger = get_logger()
-    file_logger.debug(f"{common.play_or_pause} Create database user for game server ...")
-    file_logger.debug("Create three database acore_auth, acore_characters, acore_world ...")
+    file_logger.debug(
+        f"{common.play_or_pause} Create database user for game server ..."
+    )
+    file_logger.debug(
+        "Create three database acore_auth, acore_characters, acore_world ..."
+    )
     logger.info("Create database user for game server ...")
     logger.info("Create three database acore_auth, acore_characters, acore_world ...")
     run_create_mysql_database_sql_in_rds_mode(
