@@ -15,7 +15,7 @@ x.y.z (Backlog)
 **Miscellaneous**
 
 
-1.0.1 (Backlog)
+1.0.1 (2024-06-22)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 This version is NOT a backward in-compatible release.
 
