@@ -101,10 +101,26 @@ Boostrap on Restart EC2
 这个脚本的内容本质上是 ``install.py`` 的子集, 主要是 :ref:`执行服务器 bootstrap <bootstrap-on-first-launch-ec2>` 中的任务.
 
 
-Hot Fix
+.. _rerun-bootstrap-on-first-launch-ec2:
+
+Rerun Bootstrap on First Launch EC2
 ------------------------------------------------------------------------------
-如果想要在不重启 EC2 的情况下更新游戏服务器的配置. 你可以更新 server config 之后, 远程运行 ``wserver-run-on-restart.sh`` 脚本既可.
+如果你在第一次 launch EC2 的时候的 bootstrap 脚本有 bug, 你可以在更新代码或配置之后使用 :class:`acore_server_bootstrap.api.Remoter.install <acore_server_bootstrap.remoter.Remoter.install>` 重新执行一次. 示例代码可以参考 `remote_bootstrap.py <https://github.com/MacHu-GWU/acore_server_bootstrap-project/blob/main/debug/remote_bootstrap.py#L36>`_.
 
-.. code-block::
 
-    sudo python3 -c "$(curl -fsSL https://raw.githubusercontent.com/MacHu-GWU/acore_server_bootstrap-project/main/install.py)" --acore_soap_app_version 0.3.6 --acore_db_app_version 0.2.2
+.. _restart-worldserver-with-updated-configuration:
+
+Restart worldserver with Updated Configuration
+------------------------------------------------------------------------------
+如果想要在不重启 EC2 的情况下更新 worldserver.conf 并重启 worldserver, 或是更新 database config, 例如你要调整经验倍率, 又或者修改了 database 的密码, 那么你可以用 `deploy_parameter.py <https://github.com/MacHu-GWU/acore_server_config-project/blob/main/config/deploy_parameters.py>`_ (另一个项目中的脚本) 把最新配置部署到 S3 之后, 然后依次运行下面几个 remote bootstrap 命令既可:
+
+- :meth:`acore_server_bootstrap.api.Remoter.stop_server <acore_server_bootstrap.remoter.Remoter.stop_server>`: 先停止 authserver 和 worldserver.
+- :meth:`acore_server_bootstrap.api.Remoter.create_user <acore_server_bootstrap.remoter.Remoter.create_user>`: 如果更新了数据库密码, 则需要重新配置 database user.
+- :meth:`acore_server_bootstrap.api.Remoter.update_realmlist <acore_server_bootstrap.remoter.Remoter.update_realmlist>`: 如果你的 EC2 的 elastic ip 变了, 则要更新 realmlist.
+- :meth:`acore_server_bootstrap.api.Remoter.apply_server_config <acore_server_bootstrap.remoter.Remoter.apply_server_config>`: 更新各种 ``*.conf`` 文件.
+- :meth:`acore_server_bootstrap.api.Remoter.run_server <acore_server_bootstrap.remoter.Remoter.run_server>`: 重新运行 authserver 和 worldserver.
+- :meth:`acore_server_bootstrap.api.Remoter.list_session <acore_server_bootstrap.remoter.Remoter.list_session>`: 检查 authserver 和 worldserver 是否已经运行了.
+
+过个十几秒游戏服务器就可以登录了. 你可以直接用游戏客户端登录. 如果你不放心, 你还可以 ``sshec2 ssh`` SSH 到 EC2 上, 然后运行 ``/home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs enter_worldserver`` 来进入 worldserver 交互式 shell.
+
+示例代码可以参考 `remote_bootstrap.py <https://github.com/MacHu-GWU/acore_server_bootstrap-project/blob/main/debug/remote_bootstrap.py#L50>`_.
