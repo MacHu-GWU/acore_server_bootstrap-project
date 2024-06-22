@@ -7,6 +7,7 @@ import aws_ssm_run_command.api as aws_ssm_run_command
 from acore_server.api import Server
 from acore_paths.api import path_acore_server_bootstrap_cli
 
+
 if T.TYPE_CHECKING:  # pragma: no cover
     from mypy_boto3_ssm.client import SSMClient
 
@@ -47,6 +48,9 @@ class Remoter:
         ssm_client: T.Optional["SSMClient"] = None,
         server: T.Optional[Server] = None,
     ):
+        """
+        Run :meth:`acore_server_bootstrap.cli.main.Command.hello` remotely.
+        """
         return self._run(
             action="hello",
             ssm_client=ssm_client,
@@ -58,6 +62,9 @@ class Remoter:
         ssm_client: T.Optional["SSMClient"] = None,
         server: T.Optional[Server] = None,
     ):
+        """
+        Run :meth:`acore_server_bootstrap.cli.main.Command.bootstrap_as_sudo` remotely.
+        """
         return self._run(
             action="bootstrap_as_sudo",
             ssm_client=ssm_client,
@@ -70,6 +77,9 @@ class Remoter:
         ssm_client: T.Optional["SSMClient"] = None,
         server: T.Optional[Server] = None,
     ):
+        """
+        Run :meth:`acore_server_bootstrap.cli.main.Command.bootstrap` remotely.
+        """
         return self._run(
             action="bootstrap",
             ssm_client=ssm_client,
@@ -81,6 +91,9 @@ class Remoter:
         ssm_client: T.Optional["SSMClient"] = None,
         server: T.Optional[Server] = None,
     ):
+        """
+        Run :meth:`acore_server_bootstrap.cli.main.Command.disable_ubuntu_auto_upgrade` remotely.
+        """
         return self._run(
             action="disable_ubuntu_auto_upgrade",
             ssm_client=ssm_client,
@@ -93,6 +106,9 @@ class Remoter:
         ssm_client: T.Optional["SSMClient"] = None,
         server: T.Optional[Server] = None,
     ):
+        """
+        Run :meth:`acore_server_bootstrap.cli.main.Command.setup_ec2_run_on_restart_script` remotely.
+        """
         return self._run(
             action="setup_ec2_run_on_restart_script",
             ssm_client=ssm_client,
@@ -105,6 +121,9 @@ class Remoter:
         ssm_client: T.Optional["SSMClient"] = None,
         server: T.Optional[Server] = None,
     ):
+        """
+        Run :meth:`acore_server_bootstrap.cli.main.Command.create_database` remotely.
+        """
         return self._run(
             action="create_database",
             ssm_client=ssm_client,
@@ -116,6 +135,9 @@ class Remoter:
         ssm_client: T.Optional["SSMClient"] = None,
         server: T.Optional[Server] = None,
     ):
+        """
+        Run :meth:`acore_server_bootstrap.cli.main.Command.create_user` remotely.
+        """
         return self._run(
             action="create_user",
             ssm_client=ssm_client,
@@ -127,6 +149,9 @@ class Remoter:
         ssm_client: T.Optional["SSMClient"] = None,
         server: T.Optional[Server] = None,
     ):
+        """
+        Run :meth:`acore_server_bootstrap.cli.main.Command.update_realmlist` remotely.
+        """
         return self._run(
             action="update_realmlist",
             ssm_client=ssm_client,
@@ -138,6 +163,9 @@ class Remoter:
         ssm_client: T.Optional["SSMClient"] = None,
         server: T.Optional[Server] = None,
     ):
+        """
+        Run :meth:`acore_server_bootstrap.cli.main.Command.configure_db` remotely.
+        """
         return self._run(
             action="configure_db",
             ssm_client=ssm_client,
@@ -149,6 +177,9 @@ class Remoter:
         ssm_client: T.Optional["SSMClient"] = None,
         server: T.Optional[Server] = None,
     ):
+        """
+        Run :meth:`acore_server_bootstrap.cli.main.Command.apply_authserver_conf` remotely.
+        """
         return self._run(
             action="apply_authserver_conf",
             ssm_client=ssm_client,
@@ -160,6 +191,9 @@ class Remoter:
         ssm_client: T.Optional["SSMClient"] = None,
         server: T.Optional[Server] = None,
     ):
+        """
+        Run :meth:`acore_server_bootstrap.cli.main.Command.apply_worldserver_conf` remotely.
+        """
         return self._run(
             action="apply_worldserver_conf",
             ssm_client=ssm_client,
@@ -171,6 +205,9 @@ class Remoter:
         ssm_client: T.Optional["SSMClient"] = None,
         server: T.Optional[Server] = None,
     ):
+        """
+        Run :meth:`acore_server_bootstrap.cli.main.Command.apply_mod_lua_engine_conf` remotely.
+        """
         return self._run(
             action="apply_mod_lua_engine_conf",
             ssm_client=ssm_client,
@@ -182,6 +219,9 @@ class Remoter:
         ssm_client: T.Optional["SSMClient"] = None,
         server: T.Optional[Server] = None,
     ):
+        """
+        Run :meth:`acore_server_bootstrap.cli.main.Command.apply_server_config` remotely.
+        """
         return self._run(
             action="apply_server_config",
             ssm_client=ssm_client,
@@ -193,6 +233,9 @@ class Remoter:
         ssm_client: T.Optional["SSMClient"] = None,
         server: T.Optional[Server] = None,
     ):
+        """
+        Run :meth:`acore_server_bootstrap.cli.main.Command.run_check_server_status_cron_job` remotely.
+        """
         return self._run(
             action="run_check_server_status_cron_job",
             ssm_client=ssm_client,
@@ -204,6 +247,9 @@ class Remoter:
         ssm_client: T.Optional["SSMClient"] = None,
         server: T.Optional[Server] = None,
     ):
+        """
+        Run :meth:`acore_server_bootstrap.cli.main.Command.stop_check_server_status_cron_job` remotely.
+        """
         return self._run(
             action="stop_check_server_status_cron_job",
             ssm_client=ssm_client,
@@ -215,6 +261,9 @@ class Remoter:
         ssm_client: T.Optional["SSMClient"] = None,
         server: T.Optional[Server] = None,
     ):
+        """
+        Run :meth:`acore_server_bootstrap.cli.main.Command.run_server` remotely.
+        """
         return self._run(
             action="run_server",
             ssm_client=ssm_client,
@@ -226,6 +275,9 @@ class Remoter:
         ssm_client: T.Optional["SSMClient"] = None,
         server: T.Optional[Server] = None,
     ):
+        """
+        Run :meth:`acore_server_bootstrap.cli.main.Command.list_session` remotely.
+        """
         return self._run(
             action="list_session",
             ssm_client=ssm_client,
@@ -237,6 +289,9 @@ class Remoter:
         ssm_client: T.Optional["SSMClient"] = None,
         server: T.Optional[Server] = None,
     ):
+        """
+        Run :meth:`acore_server_bootstrap.cli.main.Command.stop_server` remotely.
+        """
         return self._run(
             action="stop_server",
             ssm_client=ssm_client,
@@ -252,6 +307,9 @@ class Remoter:
         acore_db_app_version: T.Optional[str] = None,
         acore_server_bootstrap_version: T.Optional[str] = None,
     ):
+        """
+        Run :ref:`bootstrap-on-first-launch-ec2` remotely.
+        """
         if ssm_client is None:
             ssm_client = self.ssm_client
         if server is None:
@@ -262,13 +320,25 @@ class Remoter:
             acore_db_app_version=acore_db_app_version,
             acore_server_bootstrap_version=acore_server_bootstrap_version,
         )
+        print("------ send command ------")
+        print(command)
         command_invocation_list = run_shell_script_sync(
             ssm_client=ssm_client,
             commands=command,
             instance_ids=server.metadata.ec2_inst.id,
-            delays=10,
+            delays=5,
             timeout=180,
+            raises=False,
         )
+        print("")
         command_invocation = command_invocation_list[0]
-        print(command_invocation.StandardOutputContent.strip())
+        stdout = command_invocation.StandardOutputContent.strip()
+        stderr = command_invocation.StandardErrorContent.strip()
+        if stdout:
+            print("------ standard output ------")
+            print(stdout)
+        if stderr:
+            print("------ ❌ standard error ------")
+            print(stderr)
+
         return command_invocation
