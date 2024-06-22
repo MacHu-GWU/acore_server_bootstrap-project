@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import pytest
 import sys
 import subprocess
 from pathlib import Path
@@ -28,6 +29,7 @@ def test():
     _ = api.Remoter
 
 
+@pytest.mark.skipif(sys.platform == "win32", reason="does not run on windows")
 def test_cli():
     path_cli = Path(sys.executable).parent.joinpath("acorebs")
 
