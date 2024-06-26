@@ -4,6 +4,9 @@
 todo: add docstring
 """
 
+import subprocess
+from pathlib_mate import Path
+
 import acore_paths.api as acore_paths
 from acore_conf.api import apply_changes
 from acore_server.api import Server
@@ -109,3 +112,23 @@ def apply_server_config(server: Server):
         apply_authserver_conf(server)
         apply_worldserver_conf(server)
         apply_mod_lua_engine_conf(server)
+
+
+@logger.start_and_end(msg="{func_name}")
+def sync_lua_scripts(
+    s3dir_uri: str,
+):
+    """
+    清空本地的 lua_scripts 中的所有 lua 文件, 然后从指定的 S3 dir 中下载所有的 lua 文件到本地.
+    """
+    dir_server_lua_scripts = Path(acore_paths.dir_server_lua_scripts)
+    for path in dir_server_lua_scripts.select_by_ext(".lua"):
+        path.remove()
+    args = [
+        "/home/ubuntu/.pyenv/shims/aws",
+        "s3",
+        "sync",
+        s3dir_uri,
+        str(dir_server_lua_scripts),
+    ]
+    subprocess.run(args, check=True)
