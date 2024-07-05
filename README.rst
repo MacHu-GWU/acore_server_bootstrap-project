@@ -5,16 +5,16 @@
 .. image:: https://github.com/MacHu-GWU/acore_server_bootstrap-project/actions/workflows/main.yml/badge.svg
     :target: https://github.com/MacHu-GWU/acore_server_bootstrap-project/actions?query=workflow:CI
 
-.. .. image:: https://codecov.io/gh/MacHu-GWU/acore_server_bootstrap-project/branch/main/graph/badge.svg
+.. image:: https://codecov.io/gh/MacHu-GWU/acore_server_bootstrap-project/branch/main/graph/badge.svg
     :target: https://codecov.io/gh/MacHu-GWU/acore_server_bootstrap-project
 
-.. .. image:: https://img.shields.io/pypi/v/acore-server-bootstrap.svg
+.. image:: https://img.shields.io/pypi/v/acore-server-bootstrap.svg
     :target: https://pypi.python.org/pypi/acore-server-bootstrap
 
-.. .. image:: https://img.shields.io/pypi/l/acore-server-bootstrap.svg
+.. image:: https://img.shields.io/pypi/l/acore-server-bootstrap.svg
     :target: https://pypi.python.org/pypi/acore-server-bootstrap
 
-.. .. image:: https://img.shields.io/pypi/pyversions/acore-server-bootstrap.svg
+.. image:: https://img.shields.io/pypi/pyversions/acore-server-bootstrap.svg
     :target: https://pypi.python.org/pypi/acore-server-bootstrap
 
 .. image:: https://img.shields.io/badge/Release_History!--None.svg?style=social
