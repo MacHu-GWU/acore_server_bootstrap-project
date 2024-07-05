@@ -20,6 +20,7 @@ def test():
     _ = api.apply_worldserver_conf
     _ = api.apply_mod_lua_engine_conf
     _ = api.apply_server_config
+    _ = api.sync_lua_scripts
     _ = api.run_check_server_status_cron_job
     _ = api.stop_check_server_status_cron_job
     _ = api.run_server
