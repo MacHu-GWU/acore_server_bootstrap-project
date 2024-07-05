@@ -110,6 +110,13 @@ Bootstrap Actions
 :func:`~acore_server_bootstrap.actions.s2_apply_server_config.impl.apply_server_config`
 
 
+3.5 Sync Lua Scripts
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+这一步可以从 S3 上下载 lua 脚本到服务器上的 ``lua_scripts`` 目录.
+
+:func:`~acore_server_bootstrap.actions.s2_apply_server_config.impl.sync_lua_scripts`
+
+
 4. Check Server Status
 ------------------------------------------------------------------------------
 这一步主要是运行检查游戏服务器健康状态的定时任务. 下面是业务逻辑的源代码.

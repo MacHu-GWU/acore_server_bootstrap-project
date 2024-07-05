@@ -118,6 +118,13 @@ Bootstrap 的过程中需要将这几个项目安装到服务器上 `acore_serve
     /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs apply_server_config
 
 
+3.5 Sync Lua Scripts
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. code-block:: bash
+
+    /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs sync_lua_scripts
+
+
 4. Check Server Status
 ------------------------------------------------------------------------------
 .. code-block:: bash
