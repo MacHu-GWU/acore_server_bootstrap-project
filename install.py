@@ -183,15 +183,31 @@ class AcoreServerBootStrapProject(PythonProject):
 
 
 def run(
+    acore_soap_agent_git_tag: T.Optional[str] = None,
     acore_soap_app_git_tag: T.Optional[str] = None,
+    acore_server_monitoring_measurement_git_tag: T.Optional[str] = None,
     acore_db_app_git_tag: T.Optional[str] = None,
     acore_server_bootstrap_git_tag: T.Optional[str] = None,
 ):
+    acore_soap_agent_project = PythonProject(
+        project_name="acore_soap_agent",
+        git_repo_url="https://github.com/MacHu-GWU/acore_soap_agent-project.git",
+        dir_project_root=dir_git_repos.joinpath("acore_soap_agent-project"),
+        git_tag=acore_soap_agent_git_tag,
+    )
     acore_soap_app_project = PythonProject(
         project_name="acore_soap_app",
         git_repo_url="https://github.com/MacHu-GWU/acore_soap_app-project.git",
         dir_project_root=dir_git_repos.joinpath("acore_soap_app-project"),
         git_tag=acore_soap_app_git_tag,
+    )
+    acore_server_monitoring_measurement_project = PythonProject(
+        project_name="acore_server_monitoring_measurement",
+        git_repo_url="https://github.com/MacHu-GWU/acore_server_monitoring_measurement-project.git",
+        dir_project_root=dir_git_repos.joinpath(
+            "acore_server_monitoring_measurement-project"
+        ),
+        git_tag=acore_server_monitoring_measurement_git_tag,
     )
     acore_db_app_project = PythonProject(
         project_name="acore_db_app",
@@ -199,7 +215,6 @@ def run(
         dir_project_root=dir_git_repos.joinpath("acore_db_app-project"),
         git_tag=acore_db_app_git_tag,
     )
-
     acore_server_bootstrap_project = AcoreServerBootStrapProject(
         project_name="acore_server_bootstrap",
         git_repo_url="https://github.com/MacHu-GWU/acore_server_bootstrap-project.git",
@@ -207,11 +222,29 @@ def run(
         git_tag=acore_server_bootstrap_git_tag,
     )
 
+    acore_soap_agent_project.clean_up()
+    acore_soap_agent_project.clone_git_repo()
+    acore_soap_agent_project.create_virtualenv()
+    acore_soap_agent_project.install_dependencies()
+    path_cli = acore_soap_agent_project.dir_venv_bin / "acoresoapagent"
+    args = [f"{path_cli}", "hello"]
+    subprocess.run(args, check=True)
+
     acore_soap_app_project.clean_up()
     acore_soap_app_project.clone_git_repo()
     acore_soap_app_project.create_virtualenv()
     acore_soap_app_project.install_dependencies()
     path_cli = acore_soap_app_project.dir_venv_bin / "acsoap"
+    args = [f"{path_cli}", "hello"]
+    subprocess.run(args, check=True)
+
+    acore_server_monitoring_measurement_project.clean_up()
+    acore_server_monitoring_measurement_project.clone_git_repo()
+    acore_server_monitoring_measurement_project.create_virtualenv()
+    acore_server_monitoring_measurement_project.install_dependencies()
+    path_cli = (
+        acore_server_monitoring_measurement_project.dir_venv_bin / "acorelocalmetry"
+    )
     args = [f"{path_cli}", "hello"]
     subprocess.run(args, check=True)
 
@@ -238,12 +271,16 @@ if __name__ == "__main__":
     from argparse import ArgumentParser
 
     parser = ArgumentParser(prog="acore_server_bootstrap")
+    parser.add_argument("--acore_soap_agent_version", required=False)
     parser.add_argument("--acore_soap_app_version", required=False)
+    parser.add_argument("--acore_server_monitoring_measurement_version", required=False)
     parser.add_argument("--acore_db_app_version", required=False)
     parser.add_argument("--acore_server_bootstrap_version", required=False)
     args = parser.parse_args()
     run(
+        acore_soap_agent_git_tag=args.acore_soap_agent_version,
         acore_soap_app_git_tag=args.acore_soap_app_version,
+        acore_server_monitoring_measurement_git_tag=args.acore_server_monitoring_measurement_version,
         acore_db_app_git_tag=args.acore_db_app_version,
         acore_server_bootstrap_git_tag=args.acore_server_bootstrap_version,
     )
