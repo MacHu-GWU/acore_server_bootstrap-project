@@ -13,6 +13,10 @@ from .actions.s2_apply_server_config.api import apply_server_config
 from .actions.s2_apply_server_config.api import sync_lua_scripts
 from .actions.s3_check_server_status.api import run_check_server_status_cron_job
 from .actions.s3_check_server_status.api import stop_check_server_status_cron_job
+from .actions.s3_check_server_status.api import run_log_to_ec2_tag_cron_job
+from .actions.s3_check_server_status.api import stop_log_to_ec2_tag_cron_job
+from .actions.s3_check_server_status.api import run_measure_worldserver_cron_job
+from .actions.s3_check_server_status.api import stop_measure_worldserver_cron_job
 from .actions.s4_run_server.api import run_server
 from .actions.s4_run_server.api import list_session
 from .actions.s4_run_server.api import enter_worldserver

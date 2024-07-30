@@ -61,7 +61,7 @@ Bootstrap Script
 
 .. code-block:: bash
 
-    sudo /home/ubuntu/.pyenv/shims/python{python_version} -c \
+    sudo /home/ubuntu/.pyenv/shims/python3 -c \
         "$(curl -fsSL https://raw.githubusercontent.com/MacHu-GWU/acore_server_bootstrap-project/main/install.py)"'
 
 这个脚本里做了很多很多事情, 包括从 GitHub 上拉取一些需要的 repository, 并创建虚拟环境, 安装好依赖. 以及对 Ubuntu 系统进行一些配置, 包括关闭自动更新 (防止 mysql 被自动升级), 配置好启动时自动运行的 `cloud init 脚本 <https://repost.aws/knowledge-center/execute-user-data-ec2>`_, 从 S3 上拉取当前服务器的 configuration, 然后根据 configuration 配置好 ``authserver.conf``, ``worldserver.conf``, 以及配置好数据库, 更新数据库中的 realmlist 字段, 并最后在 screen session 中启动 authserver 和 worldserver, 还有系统健康监控脚本. 这整个流程就叫做 ``bootstrap``.
@@ -81,13 +81,25 @@ Bootstrap on First Launch EC2
 
 1. 执行操作系统 bootstrap: 这一步主要是将操作系统本身配置好. 在服务器上安装的必要的 Python 项目, 包括 `acore_soap_app <https://github.com/MacHu-GWU/acore_soap_app-project>`_, `acore_db_app <https://github.com/MacHu-GWU/acore_db_app-project>`_, `acore_server_bootstrap <https://github.com/MacHu-GWU/acore_server_bootstrap-project>`_ (这个项目本身). ``acore_server_bootstrap`` 项目的 CLI 工具实现了自动化配置游戏服务器的逻辑.
 2. 执行服务器 bootstrap: 这一步主要是将游戏服务器配置好. 由于前面我们已经安装好了 ``acore_server_bootstrap`` 工具 (这个项目本身), 那么所有的配置游戏服务器的任务也就是一条命令的事. 这些任务包括:
-    - 关闭 ubuntu 的自动更新, 防止它自动升级 mysql 版本导致游戏服务器无法启动 (需要 sudo).
-    - 配置好 :ref:`cloud-init` 要用到的脚本, 使得以后每次 EC2 重启后也能自动启动游戏服务器 (需要 sudo).
-    - 从 S3 拉取配置数据.
-    - 配置好数据库 (主要是 create database, create database user, update realmlist).
-    - 配置好 authserver.conf 和 worldserver.conf.
-    - 启动游戏服务器健康状态监控脚本.
-    - 启动游戏服务器.
+    1. 关闭 ubuntu 的自动更新, 防止它自动升级 mysql 版本导致游戏服务器无法启动 (需要 sudo).
+    2. 配置好 :ref:`cloud-init` 要用到的脚本, 使得以后每次 EC2 重启后也能自动启动游戏服务器 (需要 sudo).
+    3. 从 S3 拉取配置数据.
+    4. 配置好数据库 (主要是 create database, create database user, update realmlist).
+    5. 配置好 authserver.conf 和 worldserver.conf.
+    6. 启动游戏服务器健康状态监控脚本.
+    7. 启动游戏服务器.
+
+.. important::
+
+    这里最重要的一部是 2.2. 它会用 sudo 运行 :func:`~acore_server_bootstrap.actions.s0_configure_ubuntu.impl.setup_ec2_run_on_restart_script` 这个函数. 这个函数会将 `wserver-run-on-restart.sh <https://github.com/MacHu-GWU/acore_server_bootstrap-project/blob/main/acore_server_bootstrap/actions/s0_configure_ubuntu/wserver-run-on-restart.sh>`_ 脚本拷贝到 ``/var/lib/cloud/scripts/per-boot/wserver-run-on-restart.sh``, 这样 :ref:`cloud-init` 就会自动在每次启动 EC2 的时候执行这个脚本.
+
+    通过观察这个脚本的内容, 你会发现它会在 EC2 启动后用 ``ubuntu`` 用户运行 `wserver_run_on_restart.py <https://github.com/MacHu-GWU/acore_server_bootstrap-project/blob/main/acore_server_bootstrap/actions/s0_configure_ubuntu/wserver_run_on_restart.py>`_, 以及用 ``root`` 用户运行 `wserver_run_on_restart_as_sudo.py <https://github.com/MacHu-GWU/acore_server_bootstrap-project/blob/main/acore_server_bootstrap/actions/s0_configure_ubuntu/wserver_run_on_restart_as_sudo.py>`_. 而这两个脚本的里的逻辑其实就是 2.1, 2.2, ... 的子集.
+
+    .. dropdown:: wserver-run-on-restart.sh
+
+        .. literalinclude:: ../../../acore_server_bootstrap/actions/s0_configure_ubuntu/wserver-run-on-restart.sh
+           :language: bash
+           :linenos:
 
 这种设计的美妙之处在于, 你不仅能在创建 EC2 时用 User data 执行 bootstrap. 你还可以手动 SSH 到 EC2 上然后复制粘贴命令执行 bootstrap. 这样使得你可以临时对 Git 上的代码或是 configuration 进行修改, 然后无需重启 EC2 就能重新应用这些修改.
 

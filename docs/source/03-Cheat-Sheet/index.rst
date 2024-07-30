@@ -135,6 +135,22 @@ Bootstrap 的过程中需要将这几个项目安装到服务器上 `acore_serve
 
     /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs stop_check_server_status_cron_job
 
+.. code-block:: bash
+
+    /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs run_log_to_ec2_tag_cron_job
+
+.. code-block:: bash
+
+    /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs stop_log_to_ec2_tag_cron_job
+
+.. code-block:: bash
+
+    /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs run_measure_worldserver_cron_job
+
+.. code-block:: bash
+
+    /home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs stop_measure_worldserver_cron_job
+
 
 5. Run Server
 ------------------------------------------------------------------------------

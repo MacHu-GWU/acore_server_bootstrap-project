@@ -24,9 +24,23 @@ args = [
 subprocess.run(args)
 
 # --- run check server status cron job
+# args = [
+#     "/home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs",
+#     "run_check_server_status_cron_job",
+# ]
+# subprocess.run(args)
+
+# --- run log to ec2 tag cron job
 args = [
     "/home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs",
-    "run_check_server_status_cron_job",
+    "run_log_to_ec2_tag_cron_job",
+]
+subprocess.run(args)
+
+# --- run measure worldserver cron job
+args = [
+    "/home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs",
+    "run_measure_worldserver_cron_job",
 ]
 subprocess.run(args)
 

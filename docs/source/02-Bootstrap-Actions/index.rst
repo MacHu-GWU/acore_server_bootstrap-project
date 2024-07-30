@@ -133,9 +133,29 @@ Bootstrap Actions
 :func:`~acore_server_bootstrap.actions.s3_check_server_status.impl.run_check_server_status_cron_job`
 
 
-4.2 Run Check Server Status Cron Job
+4.2 Stop Check Server Status Cron Job
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 :func:`~acore_server_bootstrap.actions.s3_check_server_status.impl.stop_check_server_status_cron_job`
+
+
+4.3 Run Log to EC2 Tag Cron Job
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:func:`~acore_server_bootstrap.actions.s3_check_server_status.impl.run_log_to_ec2_tag_cron_job`
+
+
+4.4 Stop Log to EC2 Tag Cron Job
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:func:`~acore_server_bootstrap.actions.s3_check_server_status.impl.stop_log_to_ec2_tag_cron_job`
+
+
+4.5 Run Measure worldserver Cron Job
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:func:`~acore_server_bootstrap.actions.s3_check_server_status.impl.run_measure_worldserver_cron_job`
+
+
+4.6 Stop Measure worldserver Cron Job
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:func:`~acore_server_bootstrap.actions.s3_check_server_status.impl.stop_measure_worldserver_cron_job`
 
 
 5. Run Server

@@ -126,6 +126,31 @@ class Command:
         """
         api.stop_check_server_status_cron_job()
 
+    def run_log_to_ec2_tag_cron_job(self):
+        """
+        Run the "log to ec2 tag" cron job in screen session.
+        """
+        api.run_log_to_ec2_tag_cron_job()
+
+    def stop_log_to_ec2_tag_cron_job(self):
+        """
+        Stop the "log to ec2 tag" cron job.
+        """
+        api.stop_log_to_ec2_tag_cron_job()
+
+    def run_measure_worldserver_cron_job(self):
+        """
+        Run the "measure worldserver" cron job in screen session.
+        """
+        api.run_measure_worldserver_cron_job()
+
+    def stop_measure_worldserver_cron_job(self):
+        """
+        Stop the "measure worldserver" cron job.
+        """
+        api.stop_measure_worldserver_cron_job()
+
+
     def run_server(self):
         """
         Run the game server in screen session.
