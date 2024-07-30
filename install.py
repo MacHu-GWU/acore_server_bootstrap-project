@@ -74,8 +74,11 @@ class PythonProject:
     def path_venv_bin_pip(self) -> Path:
         return self.dir_venv_bin / "pip"
 
+    def begin(self):
+        print(f"🚀 ========== Install {self.project_name!r} ========== ...")
+
     def clean_up(self):
-        print(f"✅ Cleaning up '{self.dir_project_root}' folder ...")
+        print(f"  ✅ Cleaning up '{self.dir_project_root}' folder ...")
         if self.dir_project_root.exists():
             shutil.rmtree(self.dir_project_root)
 
@@ -85,7 +88,7 @@ class PythonProject:
 
             has to be run as ubuntu user
         """
-        print(f"✅ Cloning {self.project_name} git repo ...")
+        print(f"  ✅ Cloning {self.project_name} git repo ...")
         with temp_cwd(dir_git_repos):
             if self.git_tag is None:
                 args = [
@@ -121,7 +124,7 @@ class PythonProject:
 
             has to be run as ubuntu user
         """
-        print(f"✅ Creating virtualenv for {self.project_name} ...")
+        print(f"  ✅ Creating virtualenv for {self.project_name} ...")
         args = [
             f"sudo",
             "-H",
@@ -140,7 +143,7 @@ class PythonProject:
 
             has to be run as ubuntu user
         """
-        print(f"✅ Installing dependencies for {self.project_name} ...")
+        print(f"  ✅ Installing dependencies for {self.project_name} ...")
         with temp_cwd(self.dir_project_root):
             args = [
                 f"sudo",
@@ -163,7 +166,7 @@ class AcoreServerBootStrapProject(PythonProject):
         return self.dir_venv_bin / "acorebs"
 
     def run_bootstrap(self):
-        print("✅ Run bootstrap...")
+        print("🚀 ===== Run bootstrap (include as root and as ubuntu) =====")
         args = [
             "sudo",
             f"{self.path_acorebs_cli}",
@@ -222,6 +225,7 @@ def run(
         git_tag=acore_server_bootstrap_git_tag,
     )
 
+    acore_soap_agent_project.begin()
     acore_soap_agent_project.clean_up()
     acore_soap_agent_project.clone_git_repo()
     acore_soap_agent_project.create_virtualenv()
@@ -230,6 +234,7 @@ def run(
     args = [f"{path_cli}", "hello"]
     subprocess.run(args, check=True)
 
+    acore_soap_app_project.begin()
     acore_soap_app_project.clean_up()
     acore_soap_app_project.clone_git_repo()
     acore_soap_app_project.create_virtualenv()
@@ -238,6 +243,7 @@ def run(
     args = [f"{path_cli}", "hello"]
     subprocess.run(args, check=True)
 
+    acore_server_monitoring_measurement_project.begin()
     acore_server_monitoring_measurement_project.clean_up()
     acore_server_monitoring_measurement_project.clone_git_repo()
     acore_server_monitoring_measurement_project.create_virtualenv()
@@ -248,6 +254,7 @@ def run(
     args = [f"{path_cli}", "hello"]
     subprocess.run(args, check=True)
 
+    acore_db_app_project.begin()
     acore_db_app_project.clean_up()
     acore_db_app_project.clone_git_repo()
     acore_db_app_project.create_virtualenv()
@@ -256,6 +263,7 @@ def run(
     args = [f"{path_cli}", "hello"]
     subprocess.run(args, check=True)
 
+    acore_server_bootstrap_project.begin()
     acore_server_bootstrap_project.clean_up()
     acore_server_bootstrap_project.clone_git_repo()
     acore_server_bootstrap_project.create_virtualenv()
