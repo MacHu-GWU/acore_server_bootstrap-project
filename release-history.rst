@@ -26,6 +26,10 @@ x.y.z (Backlog)
     - ``acorebs stop_measure_worldserver_cron_job``
 - No longer run ``acorebs run_check_server_status_cron_job`` in cloud-init, now we run ``acorebs run_log_to_ec2_tag_cron_job`` and ``acorebs run_measure_worldserver_cron_job`` instead. This gives us better server monitoring visibility, better performance, and lower cost.
 
+**Minor Improvements**
+
+- Improve document.
+
 
 1.1.2 (2024-07-26)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

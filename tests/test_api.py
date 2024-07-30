@@ -23,6 +23,10 @@ def test():
     _ = api.sync_lua_scripts
     _ = api.run_check_server_status_cron_job
     _ = api.stop_check_server_status_cron_job
+    _ = api.run_log_to_ec2_tag_cron_job
+    _ = api.stop_log_to_ec2_tag_cron_job
+    _ = api.run_measure_worldserver_cron_job
+    _ = api.stop_measure_worldserver_cron_job
     _ = api.run_server
     _ = api.list_session
     _ = api.enter_worldserver
