@@ -40,7 +40,8 @@ class Command:
             server = Server.from_ec2_inside()
             api.configure_db(server)
             api.apply_server_config(server)
-            api.run_check_server_status_cron_job()
+            api.run_log_to_ec2_tag_cron_job()
+            api.run_measure_worldserver_cron_job()
             api.run_server()
 
     def disable_ubuntu_auto_upgrade(self):

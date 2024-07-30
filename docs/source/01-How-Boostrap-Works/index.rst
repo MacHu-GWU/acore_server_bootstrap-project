@@ -57,14 +57,16 @@ Root User
 
 Bootstrap Script
 ------------------------------------------------------------------------------
-实现这一目标的核心脚本呢是一个叫 `bootstrap script <https://github.com/MacHu-GWU/acore_server_bootstrap-project/blob/main/install.py>`_ 的脚本. 你只要在 EC2 上运行 **下面这个命令**, 既可把一个刚从 AMI 启动的 EC2 实例, 变成一个正在运行游戏服务器的 EC2 实例. 这个脚本是一个无任何依赖的纯 Python 脚本, 而下面这个命令则是会将这个脚本的内容从 GitHub 下载下来然后用系统的 Python 运行它.
+实现这一目标的核心脚本呢是一个叫 `install.py <https://github.com/MacHu-GWU/acore_server_bootstrap-project/blob/main/install.py>`_ 的 bootstrap script 脚本. 你只要在 EC2 上运行 **下面这个命令**, 既可把一个刚从 AMI 启动的 EC2 实例, 变成一个正在运行游戏服务器的 EC2 实例. 这个脚本是一个无任何依赖的纯 Python 脚本, 而下面这个命令则是会将这个脚本的内容从 GitHub 下载下来然后用系统的 Python 运行它.
 
 .. code-block:: bash
 
     sudo /home/ubuntu/.pyenv/shims/python3 -c \
         "$(curl -fsSL https://raw.githubusercontent.com/MacHu-GWU/acore_server_bootstrap-project/main/install.py)"'
 
-这个脚本里做了很多很多事情, 包括从 GitHub 上拉取一些需要的 repository, 并创建虚拟环境, 安装好依赖. 以及对 Ubuntu 系统进行一些配置, 包括关闭自动更新 (防止 mysql 被自动升级), 配置好启动时自动运行的 `cloud init 脚本 <https://repost.aws/knowledge-center/execute-user-data-ec2>`_, 从 S3 上拉取当前服务器的 configuration, 然后根据 configuration 配置好 ``authserver.conf``, ``worldserver.conf``, 以及配置好数据库, 更新数据库中的 realmlist 字段, 并最后在 screen session 中启动 authserver 和 worldserver, 还有系统健康监控脚本. 这整个流程就叫做 ``bootstrap``.
+这个脚本里做了很多很多事情, 包括从 GitHub 上拉取一些需要的 repository, 并创建虚拟环境, 安装好依赖. 然后运行 ``run_bootstrap`` 函数 (搜索 ``run_bootstrap``). 这个 ``run_bootstrap`` 函数执行的是 ``acorebs bootstrap_as_sudo`` (用 sudo 运行) 和 ``acorebs bootstrap`` (不用 sudo 运行) 这两个 CLI 命令. 观察对应的 :meth:`~acore_server_bootstrap.cli.main.Command.bootstrap_as_sudo` 和 :meth:`~acore_server_bootstrap.cli.main.Command.bootstrap` 两个函数对 Ubuntu 系统进行一些配置, 包括关闭自动更新 (防止 mysql 被自动升级), 配置好启动时自动运行的 `cloud init 脚本 <https://repost.aws/knowledge-center/execute-user-data-ec2>`_ (这样重启 EC2 后就不用重新运行这个 install.py, 而能自动完成一切了), 从 S3 上拉取当前服务器的 configuration, 然后根据 configuration 配置好 ``authserver.conf``, ``worldserver.conf``, 以及配置好数据库, 更新数据库中的 realmlist 字段, 并最后在 screen session 中启动 authserver 和 worldserver, 还有服务器监控数据采集脚本. 这整个流程就叫做 ``bootstrap``.
+
+在这一小节里, 我们说的是手动将这个命令粘贴到 terminal 中运行的. 但是对于第一次创建 EC2 的时候, 完全可以将放到 EC2 User data 中自动运行. 这样就能实现全自动化的配置了. 详情请看下一节中的介绍.
 
 
 .. _bootstrap-on-first-launch-ec2:
@@ -86,7 +88,7 @@ Bootstrap on First Launch EC2
     3. 从 S3 拉取配置数据.
     4. 配置好数据库 (主要是 create database, create database user, update realmlist).
     5. 配置好 authserver.conf 和 worldserver.conf.
-    6. 启动游戏服务器健康状态监控脚本.
+    6. 启动游戏服务器监控数据采集脚本 (详情请参考 `How Localmetry Works <https://acore-server-monitoring-measurement.readthedocs.io/en/latest/search.html?q=How+Localmetry+Works&check_keywords=yes&area=default>`_).
     7. 启动游戏服务器.
 
 .. important::
@@ -101,7 +103,7 @@ Bootstrap on First Launch EC2
            :language: bash
            :linenos:
 
-这种设计的美妙之处在于, 你不仅能在创建 EC2 时用 User data 执行 bootstrap. 你还可以手动 SSH 到 EC2 上然后复制粘贴命令执行 bootstrap. 这样使得你可以临时对 Git 上的代码或是 configuration 进行修改, 然后无需重启 EC2 就能重新应用这些修改.
+这种设计的美妙之处在于, 你不仅能在创建 EC2 时用 User data 执行 bootstrap. 你还可以手动 SSH 到 EC2 上然后复制粘贴命令执行 bootstrap. 这样使得你可以临时对 Git 上的代码或是 configuration 进行修改, 然后无需重启 EC2 就能重新应用这些修改. 既满足了自动化的需求, 还能很轻易的手动 debug.
 
 
 .. _bootstrap-on-restart-ec2:
