@@ -15,11 +15,23 @@ x.y.z (Backlog)
 **Miscellaneous**
 
 
+1.2.1 (2024-07-29)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Features and Improvements**
+
+- Add the following bootstrap commands:
+    - ``acorebs run_log_to_ec2_tag_cron_job``
+    - ``acorebs stop_log_to_ec2_tag_cron_job``
+    - ``acorebs run_measure_worldserver_cron_job``
+    - ``acorebs stop_measure_worldserver_cron_job``
+- No longer run ``acorebs run_check_server_status_cron_job`` in cloud-init, now we run ``acorebs run_log_to_ec2_tag_cron_job`` and ``acorebs run_measure_worldserver_cron_job`` instead. This gives us better server monitoring visibility, better performance, and lower cost.
+
+
 1.1.2 (2024-07-26)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 **Minor Improvements**
 
-- Upgrade acore_server_config to 0.6.3 and acore_server to 1.1.4.
+- Upgrade ``acore_server_config`` to 0.6.3 and ``acore_server`` to 1.1.4.
 
 
 1.1.1 (2024-07-05)

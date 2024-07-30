@@ -23,6 +23,7 @@ args = [
 ]
 subprocess.run(args)
 
+# todo: the run_check_server_status_cron_job is no longer needed, consider remove it in the next release
 # --- run check server status cron job
 # args = [
 #     "/home/ubuntu/git_repos/acore_server_bootstrap-project/.venv/bin/acorebs",
