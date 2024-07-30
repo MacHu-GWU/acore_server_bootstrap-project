@@ -15,14 +15,7 @@ x.y.z (Backlog)
 **Miscellaneous**
 
 
-1.2.2 (2024-07-30)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-**Bugfixes**
-
-- Fix the ``acorebs bootstrap`` command logic.
-
-
-1.2.1 (2024-07-29) YANKED
+1.2.1 (2024-07-30)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 **Features and Improvements**
 
@@ -31,7 +24,7 @@ x.y.z (Backlog)
     - ``acorebs stop_log_to_ec2_tag_cron_job``
     - ``acorebs run_measure_worldserver_cron_job``
     - ``acorebs stop_measure_worldserver_cron_job``
-- No longer run ``acorebs run_check_server_status_cron_job`` in cloud-init, now we run ``acorebs run_log_to_ec2_tag_cron_job`` and ``acorebs run_measure_worldserver_cron_job`` instead. This gives us better server monitoring visibility, better performance, and lower cost.
+- No longer run ``acorebs run_check_server_status_cron_job`` in bootstrap and cloud-init, now we run ``acorebs run_log_to_ec2_tag_cron_job`` and ``acorebs run_measure_worldserver_cron_job`` instead. This gives us better server monitoring visibility, better performance, and lower cost.
 
 **Minor Improvements**
 
